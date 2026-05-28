@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // ── Content adapted for Kc's portfolio ──────────────────────
-const STEPS = [
+const FEATURES = [
   {
     img: "/assets/img/kc-org-img1.jpg",
     alt: "Discovery & Planning",
@@ -37,13 +37,13 @@ const STEPS = [
 
 // ── Arc animation constants ─────────────────────────────────
 // 5 real cards + 2 empty = 7 total (matches original totalCards)
-const TOTAL_CARDS = STEPS.length + 2; // 7
+const TOTAL_CARDS = FEATURES.length + 2; // 7
 const ARC_ANGLE = Math.PI * 0.4;
 const START_ANGLE = Math.PI / 2 - ARC_ANGLE / 2;
 // totalTravel = 1 + totalCards / 7 = 1 + 7/7 = 2
 const TOTAL_TRAVEL = 1 + TOTAL_CARDS / 7;
 
-export default function StepsSection() {
+export default function FeaturesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const countContainerRef = useRef<HTMLDivElement>(null);
@@ -62,7 +62,7 @@ export default function StepsSection() {
     const getCounterH = () =>
       window.innerWidth < 480 ? 40 : window.innerWidth < 900 ? 50 : 150;
 
-    // ── Reconstructed positionCards (script.js was cut off here) ──
+    // ── Reconstructed positionCards ──────────────────────────────────
     function positionCards(progress: number) {
       const radius = getRadius();
       const h = getCounterH();
@@ -94,7 +94,7 @@ export default function StepsSection() {
       // ── Counter: find the last real card that has passed the arc midpoint ──
       // When a card's p >= 0.5, it has reached or passed the front-center position
       let activeStep = -1; // -1 = no card at front yet → counter hidden
-      for (let i = 0; i < STEPS.length; i++) {
+      for (let i = 0; i < FEATURES.length; i++) {
         const p = progress * TOTAL_TRAVEL - i / TOTAL_CARDS;
         if (p >= 0.5) activeStep = i;
       }
@@ -127,17 +127,17 @@ export default function StepsSection() {
 
   return (
     <>
-      {/* ── Steps Section ──────────────────────────────────── */}
-      <section className="steps-sect" ref={sectionRef} id="process">
-        {/* Step Counter */}
-        <div className="steps-counter">
-          <div className="steps-counter-title">
-            <span className="steps-counter-h">Features</span>
+      {/* ── Features Section ─────────────────────────────────── */}
+      <section className="features-sect" ref={sectionRef} id="features">
+        {/* Feature Counter */}
+        <div className="features-counter">
+          <div className="features-counter-title">
+            <span className="features-counter-h">Features</span>
           </div>
-          <div className="steps-count">
-            <div className="steps-count-container" ref={countContainerRef}>
+          <div className="features-count">
+            <div className="features-count-container" ref={countContainerRef}>
               {["01", "02", "03", "04", "05"].map((n) => (
-                <span className="steps-count-h" key={n}>
+                <span className="features-count-h" key={n}>
                   {n}
                 </span>
               ))}
@@ -146,29 +146,29 @@ export default function StepsSection() {
         </div>
 
         {/* Arc Cards */}
-        <div className="steps-cards">
-          {STEPS.map((step, i) => (
+        <div className="features-cards">
+          {FEATURES.map((feature, i) => (
             <div
-              className="steps-card"
+              className="features-card"
               key={i}
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
             >
-              <div className="steps-card-img">
+              <div className="features-card-img">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={step.img} alt={step.alt} />
+                <img src={feature.img} alt={feature.alt} />
               </div>
-              <div className="steps-card-content">
-                <p>{step.text}</p>
+              <div className="features-card-content">
+                <p>{feature.text}</p>
               </div>
             </div>
           ))}
 
           {/* Two empty spacer cards — required for arc end-padding */}
-          {[STEPS.length, STEPS.length + 1].map((idx) => (
+          {[FEATURES.length, FEATURES.length + 1].map((idx) => (
             <div
-              className="steps-card steps-empty"
+              className="features-card features-empty"
               key={`empty-${idx}`}
               ref={(el) => {
                 cardRefs.current[idx] = el;
@@ -179,7 +179,7 @@ export default function StepsSection() {
       </section>
 
       {/* ── Outro Section ──────────────────────────────────── */}
-      <section className="steps-outro" id="process-outro">
+      <section className="features-outro" id="features-outro">
         <p>
           My work reflects a commitment to quality and precision,{" "}
           <span>delivering complete end-to-end web solutions</span> from

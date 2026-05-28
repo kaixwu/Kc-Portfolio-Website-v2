@@ -1618,12 +1618,12 @@ svg{
 }
 
 /* ============================================================
-   BANNER SECTION (after Hero)
+   FEATURED PROJECT SECTION (after Hero)
    Based on the agency banner tutorial, adapted for portfolio.
-   All selectors scoped to .banner-sect to avoid conflicts.
+   All selectors scoped to .featured-project to avoid conflicts.
    ============================================================ */
 
-.banner-sect {
+.featured-project {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -1638,7 +1638,7 @@ svg{
 }
 
 /* Left black panel — floated to cover left 50% */
-.banner-sect__left {
+.featured-project__left {
     position: absolute;
     top: 0;
     left: 0;
@@ -1649,7 +1649,7 @@ svg{
 }
 
 /* Big centred word that spans both halves */
-.banner-sect__word {
+.featured-project__word {
     font-family: 'Unbounded', 'Poppins', sans-serif;
     font-size: clamp(48px, 11vw, 180px);
     font-weight: 900;
@@ -1664,7 +1664,7 @@ svg{
 }
 
 /* "The" pseudo-element above */
-.banner-sect__word::before {
+.featured-project__word::before {
     content: 'Featured';
     font-family: 'Unbounded', 'Poppins', sans-serif;
     font-size: clamp(22px, 4.5vw, 80px);
@@ -1675,7 +1675,7 @@ svg{
 }
 
 /* "Developer" pseudo-element below-right */
-.banner-sect__word::after {
+.featured-project__word::after {
     content: 'Project';
     font-family: 'Unbounded', 'Poppins', sans-serif;
     font-size: clamp(22px, 4.5vw, 80px);
@@ -1686,7 +1686,7 @@ svg{
 }
 
 /* Description paragraph — bottom-left of the black panel */
-.banner-sect__desc {
+.featured-project__desc {
     font-family: 'Poppins', sans-serif;
     font-size: clamp(12px, 1.1vw, 16px);
     font-weight: 400;
@@ -1701,12 +1701,12 @@ svg{
 
 /* ── Responsive: Tablet ── */
 @media (max-width: 900px) {
-    .banner-sect__left {
+    .featured-project__left {
         width: 100%;
         opacity: 0.65;
     }
 
-    .banner-sect__desc {
+    .featured-project__desc {
         width: 80%;
         left: 10%;
         bottom: 4rem;
@@ -1715,7 +1715,7 @@ svg{
 
 /* ── Responsive: Mobile incl. iPhone SE 375×667 ── */
 @media (max-width: 480px) {
-    .banner-sect__word {
+    .featured-project__word {
         font-size: clamp(36px, 13vw, 60px);
         white-space: normal;
         text-align: center;
@@ -1724,17 +1724,17 @@ svg{
         transform: translate(-50%, -50%);
     }
 
-    .banner-sect__word::before,
-    .banner-sect__word::after {
+    .featured-project__word::before,
+    .featured-project__word::after {
         font-size: clamp(16px, 5.5vw, 28px);
     }
 
-    .banner-sect__word::after {
+    .featured-project__word::after {
         right: auto;
         left: 0;
     }
 
-    .banner-sect__desc {
+    .featured-project__desc {
         font-size: 1.3rem;
         width: 90%;
         left: 5%;
@@ -1743,13 +1743,13 @@ svg{
 }
 
 /* ============================================================
-   STEPS SECTION — Arc Card Scroll Animation (Codegrid)
-   All selectors prefixed with .steps-* to prevent conflicts.
+   FEATURES SECTION — Arc Card Scroll Animation (Codegrid)
+   All selectors prefixed with .features-* to prevent conflicts.
    NOTE: html/body height is NOT set here — GSAP pinSpacing
          handles the extra scroll space automatically.
    ============================================================ */
 
-.steps-sect {
+.features-sect {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -1762,7 +1762,7 @@ svg{
 }
 
 /* ── Arc Cards Container ── */
-.steps-cards {
+.features-cards {
     position: absolute;
     top: 25%;
     left: 50%;
@@ -1774,7 +1774,7 @@ svg{
 }
 
 /* Individual card — GSAP positions these via x/y/rotation */
-.steps-card {
+.features-card {
     position: absolute;
     width: 500px;
     height: 550px;
@@ -1789,25 +1789,25 @@ svg{
     pointer-events: auto;
 }
 
-.steps-card-img {
+.features-card-img {
     flex: 1;
     border-radius: 0.5em;
     overflow: hidden;
 }
 
-.steps-card-img img {
+.features-card-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.steps-card-content {
+.features-card-content {
     width: 100%;
     height: 60px;
 }
 
-.steps-card-content p {
+.features-card-content p {
     text-align: left;
     color: #fff;
     font-size: 16px;
@@ -1815,13 +1815,13 @@ svg{
     line-height: 1.25;
 }
 
-.steps-empty {
+.features-empty {
     opacity: 0;
     pointer-events: none;
 }
 
-/* ── Step Counter ── */
-.steps-counter {
+/* ── Feature Counter ── */
+.features-counter {
     position: absolute;
     top: 0;
     left: 0;
@@ -1832,26 +1832,26 @@ svg{
 }
 
 /* Both title and count clip their overflow to reveal one line at a time */
-.steps-counter-title,
-.steps-count {
+.features-counter-title,
+.features-count {
     position: relative;
     width: 100vw;
     height: 150px;
     overflow: hidden;
 }
 
-.steps-count {
+.features-count {
     top: -10px;
 }
 
 /* GSAP controls translateY on this element — no CSS transform here */
-.steps-count-container {
+.features-count-container {
     position: relative;
     will-change: transform;
 }
 
-/* "Steps" label */
-.steps-counter-h {
+/* "Features" label */
+.features-counter-h {
     display: block;
     width: 100%;
     color: #fff;
@@ -1865,7 +1865,7 @@ svg{
 }
 
 /* "01" to "05" numbers */
-.steps-count-h {
+.features-count-h {
     display: block;
     width: 100%;
     color: #fff;
@@ -1880,7 +1880,7 @@ svg{
 }
 
 /* ── Outro Section ── */
-.steps-outro {
+.features-outro {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -1893,7 +1893,7 @@ svg{
     overflow: hidden;
 }
 
-.steps-outro > p {
+.features-outro > p {
     width: 75%;
     text-align: center;
     color: #fff;
@@ -1903,70 +1903,70 @@ svg{
     font-family: 'Poppins', sans-serif;
 }
 
-.steps-outro > p span {
+.features-outro > p span {
     color: #ff8c00;
 }
 
 /* ── Tablet (≤ 900px) — matches getCounterH() returning 50 ── */
 @media (max-width: 900px) {
-    .steps-counter-title {
+    .features-counter-title {
         height: 50px;
     }
 
-    .steps-count {
+    .features-count {
         height: 50px;
         top: 0;
         left: -10px;
     }
 
-    .steps-counter-h,
-    .steps-count-h {
+    .features-counter-h,
+    .features-count-h {
         font-size: 50px;
         height: 50px;
     }
 
-    .steps-cards {
+    .features-cards {
         top: 27.5%;
     }
 
-    .steps-card {
+    .features-card {
         width: 375px;
         height: 500px;
         margin-left: -187.5px;
     }
 
-    .steps-outro > p {
+    .features-outro > p {
         width: 88%;
     }
 }
 
 /* ── Mobile / iPhone SE — matches getCounterH() returning 40 ── */
 @media (max-width: 480px) {
-    .steps-counter-title {
+    .features-counter-title {
         height: 40px;
     }
 
-    .steps-count {
+    .features-count {
         height: 40px;
     }
 
-    .steps-counter-h,
-    .steps-count-h {
+    .features-counter-h,
+    .features-count-h {
         font-size: 40px;
         height: 40px;
     }
 
-    .steps-card {
+    .features-card {
         width: 300px;
         height: 420px;
         margin-left: -150px;
     }
 
-    .steps-card-content {
+    .features-card-content {
         height: auto;
     }
 
-    .steps-card-content p {
+    .features-card-content p {
         font-size: 13px;
     }
 }

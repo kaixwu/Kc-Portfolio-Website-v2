@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import BannerSection from "@/components/BannerSection";
-import StepsSection from "@/components/StepsSection";
+import FeaturedProjectSection from "@/components/FeaturedProjectSection";
+import FeaturesSection from "@/components/FeaturesSection";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
@@ -18,8 +18,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <BannerSection />
-        <StepsSection />
+        <FeaturedProjectSection />
+        <FeaturesSection />
         <Services />
         <Projects />
         <About />
