@@ -1,0 +1,191 @@
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// ── Content adapted for Kc's portfolio ──────────────────────
+const STEPS = [
+  {
+    img: "/assets/img/kc-org-img1.jpg",
+    alt: "Discovery & Planning",
+    text: "Deep dive into project goals, target audience, and requirements to create a solid foundation for everything that follows.",
+  },
+  {
+    img: "/assets/img/kc-org-img2.jpg",
+    alt: "Design & Prototyping",
+    text: "Craft wireframes and high-fidelity prototypes in Figma, refining the visual identity and user experience until it feels right.",
+  },
+  {
+    img: "/assets/img/kc-org-img3.jpg",
+    alt: "Development & Build",
+    text: "Bring designs to life with clean, semantic code — building responsive layouts with modern web technologies like Next.js.",
+  },
+  {
+    img: "/assets/img/kc-org-img4.jpg",
+    alt: "Testing & Refinement",
+    text: "Thorough cross-browser and cross-device testing to ensure everything works flawlessly on every screen and device.",
+  },
+  {
+    img: "/assets/img/kc-org-img5.jpg",
+    alt: "Launch & Delivery",
+    text: "Deploy the final product, perform final QA, and hand off a fully functional website ready to make a real impact.",
+  },
+];
+
+// ── Arc animation constants ─────────────────────────────────
+// 5 real cards + 2 empty = 7 total (matches original totalCards)
+const TOTAL_CARDS = STEPS.length + 2; // 7
+const ARC_ANGLE = Math.PI * 0.4;
+const START_ANGLE = Math.PI / 2 - ARC_ANGLE / 2;
+// totalTravel = 1 + totalCards / 7 = 1 + 7/7 = 2
+const TOTAL_TRAVEL = 1 + TOTAL_CARDS / 7;
+
+export default function StepsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const countContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Sticky scroll height — same as original (innerHeight * 7)
+    const stickyHeight = window.innerHeight * 7;
+
+    // Responsive radius — same as original
+    const getRadius = () =>
+      window.innerWidth < 900
+        ? window.innerWidth * 7.5
+        : window.innerWidth * 2.5;
+
+    // Counter element height changes at breakpoints to match CSS
+    const getCounterH = () =>
+      window.innerWidth < 480 ? 40 : window.innerWidth < 900 ? 50 : 150;
+
+    // ── Reconstructed positionCards (script.js was cut off here) ──
+    function positionCards(progress: number) {
+      const radius = getRadius();
+      const h = getCounterH();
+
+      // Position each card along the arc
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+
+        // Progress for this specific card along the arc
+        const p = progress * TOTAL_TRAVEL - i / TOTAL_CARDS;
+        const angle = START_ANGLE + ARC_ANGLE * p;
+
+        // Convert polar → Cartesian (screen coords: y grows downward)
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        // Rotation keeps card perpendicular to the arc tangent
+        const rotation = -(angle - Math.PI / 2) * (180 / Math.PI);
+
+        gsap.set(card, {
+          x,
+          // -(y - radius) means: at angle=PI/2 (top) → y_screen=0 (center),
+          // approaching from below (+y) and exiting above (-y)
+          y: -(y - radius),
+          rotation,
+        });
+      });
+
+      // ── Counter: find the last real card that has passed the arc midpoint ──
+      // When a card's p >= 0.5, it has reached or passed the front-center position
+      let activeStep = -1; // -1 = no card at front yet → counter hidden
+      for (let i = 0; i < STEPS.length; i++) {
+        const p = progress * TOTAL_TRAVEL - i / TOTAL_CARDS;
+        if (p >= 0.5) activeStep = i;
+      }
+
+      if (countContainerRef.current) {
+        // activeStep === -1 → push counter below clip (hidden)
+        // activeStep  >=  0 → snap to the matching number
+        gsap.set(countContainerRef.current, {
+          y: activeStep === -1 ? h : -h * activeStep,
+        });
+      }
+    }
+
+    // Initialise card positions before any scroll
+    positionCards(0);
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${stickyHeight}px`,
+        pin: true,
+        pinSpacing: true,
+        onUpdate: (self) => positionCards(self.progress),
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <>
+      {/* ── Steps Section ──────────────────────────────────── */}
+      <section className="steps-sect" ref={sectionRef} id="process">
+        {/* Step Counter */}
+        <div className="steps-counter">
+          <div className="steps-counter-title">
+            <span className="steps-counter-h">Features</span>
+          </div>
+          <div className="steps-count">
+            <div className="steps-count-container" ref={countContainerRef}>
+              {["01", "02", "03", "04", "05"].map((n) => (
+                <span className="steps-count-h" key={n}>
+                  {n}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Arc Cards */}
+        <div className="steps-cards">
+          {STEPS.map((step, i) => (
+            <div
+              className="steps-card"
+              key={i}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+              }}
+            >
+              <div className="steps-card-img">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={step.img} alt={step.alt} />
+              </div>
+              <div className="steps-card-content">
+                <p>{step.text}</p>
+              </div>
+            </div>
+          ))}
+
+          {/* Two empty spacer cards — required for arc end-padding */}
+          {[STEPS.length, STEPS.length + 1].map((idx) => (
+            <div
+              className="steps-card steps-empty"
+              key={`empty-${idx}`}
+              ref={(el) => {
+                cardRefs.current[idx] = el;
+              }}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ── Outro Section ──────────────────────────────────── */}
+      <section className="steps-outro" id="process-outro">
+        <p>
+          My work reflects a commitment to quality and precision,{" "}
+          <span>delivering complete end-to-end web solutions</span> from
+          concept to live deployment.
+        </p>
+      </section>
+    </>
+  );
+}

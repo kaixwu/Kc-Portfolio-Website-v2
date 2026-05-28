@@ -1741,3 +1741,232 @@ svg{
         bottom: 3rem;
     }
 }
+
+/* ============================================================
+   STEPS SECTION — Arc Card Scroll Animation (Codegrid)
+   All selectors prefixed with .steps-* to prevent conflicts.
+   NOTE: html/body height is NOT set here — GSAP pinSpacing
+         handles the extra scroll space automatically.
+   ============================================================ */
+
+.steps-sect {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Override global section { padding: 10rem 15%; min-height: 100vh } */
+    padding: 0 !important;
+    min-height: unset !important;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+}
+
+/* ── Arc Cards Container ── */
+.steps-cards {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150vw;
+    height: 600px;
+    will-change: transform;
+    pointer-events: none;
+}
+
+/* Individual card — GSAP positions these via x/y/rotation */
+.steps-card {
+    position: absolute;
+    width: 500px;
+    height: 550px;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    margin-left: -250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    will-change: transform;
+    pointer-events: auto;
+}
+
+.steps-card-img {
+    flex: 1;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+.steps-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.steps-card-content {
+    width: 100%;
+    height: 60px;
+}
+
+.steps-card-content p {
+    text-align: left;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.steps-empty {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ── Step Counter ── */
+.steps-counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+    z-index: 2;
+}
+
+/* Both title and count clip their overflow to reveal one line at a time */
+.steps-counter-title,
+.steps-count {
+    position: relative;
+    width: 100vw;
+    height: 150px;
+    overflow: hidden;
+}
+
+.steps-count {
+    top: -10px;
+}
+
+/* GSAP controls translateY on this element — no CSS transform here */
+.steps-count-container {
+    position: relative;
+    will-change: transform;
+}
+
+/* "Steps" label */
+.steps-counter-h {
+    display: block;
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 150px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    height: 150px;
+}
+
+/* "01" to "05" numbers */
+.steps-count-h {
+    display: block;
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 150px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    height: 150px;
+    will-change: transform;
+}
+
+/* ── Outro Section ── */
+.steps-outro {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 0 !important;
+    min-height: unset !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #000000, #0f2027);
+    overflow: hidden;
+}
+
+.steps-outro > p {
+    width: 75%;
+    text-align: center;
+    color: #fff;
+    font-size: clamp(24px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: 'Poppins', sans-serif;
+}
+
+.steps-outro > p span {
+    color: #ff8c00;
+}
+
+/* ── Tablet (≤ 900px) — matches getCounterH() returning 50 ── */
+@media (max-width: 900px) {
+    .steps-counter-title {
+        height: 50px;
+    }
+
+    .steps-count {
+        height: 50px;
+        top: 0;
+        left: -10px;
+    }
+
+    .steps-counter-h,
+    .steps-count-h {
+        font-size: 50px;
+        height: 50px;
+    }
+
+    .steps-cards {
+        top: 27.5%;
+    }
+
+    .steps-card {
+        width: 375px;
+        height: 500px;
+        margin-left: -187.5px;
+    }
+
+    .steps-outro > p {
+        width: 88%;
+    }
+}
+
+/* ── Mobile / iPhone SE — matches getCounterH() returning 40 ── */
+@media (max-width: 480px) {
+    .steps-counter-title {
+        height: 40px;
+    }
+
+    .steps-count {
+        height: 40px;
+    }
+
+    .steps-counter-h,
+    .steps-count-h {
+        font-size: 40px;
+        height: 40px;
+    }
+
+    .steps-card {
+        width: 300px;
+        height: 420px;
+        margin-left: -150px;
+    }
+
+    .steps-card-content {
+        height: auto;
+    }
+
+    .steps-card-content p {
+        font-size: 13px;
+    }
+}
