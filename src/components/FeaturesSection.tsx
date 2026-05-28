@@ -35,6 +35,14 @@ const FEATURES = [
   },
 ];
 
+const SUBHEADINGS = [
+  "planning",
+  "prototyping",
+  "development",
+  "refinement",
+  "delivery",
+];
+
 // ── Arc animation constants ─────────────────────────────────
 // 5 real cards + 2 empty = 7 total (matches original totalCards)
 const TOTAL_CARDS = FEATURES.length + 2; // 7
@@ -49,18 +57,23 @@ export default function FeaturesSection() {
   const countContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Sticky scroll height — same as original (innerHeight * 7)
-    const stickyHeight = window.innerHeight * 7;
+    // Sticky scroll height — optimized to prevent empty black scroll space at the end
+    const stickyHeight = window.innerHeight * 3.5;
 
-    // Responsive radius — same as original
+    // Responsive radius — standardizing breakpoint to 1024px for iPad Pro support
     const getRadius = () =>
-      window.innerWidth < 900
+      window.innerWidth <= 1024
         ? window.innerWidth * 7.5
         : window.innerWidth * 2.5;
 
     // Counter element height changes at breakpoints to match CSS
-    const getCounterH = () =>
-      window.innerWidth < 480 ? 40 : window.innerWidth < 900 ? 50 : 150;
+    const getCounterH = () => {
+      const w = window.innerWidth;
+      if (w < 480) return 30; // Mobile
+      if (w < 850) return 35; // iPad Air / Standard Tablet
+      if (w <= 1024) return 40; // iPad Pro / Large Tablet
+      return 50; // Desktop
+    };
 
     // ── Reconstructed positionCards ──────────────────────────────────
     function positionCards(progress: number) {
@@ -71,8 +84,8 @@ export default function FeaturesSection() {
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
 
-        // Progress for this specific card along the arc
-        const p = progress * TOTAL_TRAVEL - i / TOTAL_CARDS;
+        // Progress for this specific card along the arc (starts with first card centered)
+        const p = 0.5 + progress * (5.5 / TOTAL_CARDS) - i / TOTAL_CARDS;
         const angle = START_ANGLE + ARC_ANGLE * p;
 
         // Convert polar → Cartesian (screen coords: y grows downward)
@@ -95,7 +108,7 @@ export default function FeaturesSection() {
       // When a card's p >= 0.5, it has reached or passed the front-center position
       let activeStep = -1; // -1 = no card at front yet → counter hidden
       for (let i = 0; i < FEATURES.length; i++) {
-        const p = progress * TOTAL_TRAVEL - i / TOTAL_CARDS;
+        const p = 0.5 + progress * (5.5 / TOTAL_CARDS) - i / TOTAL_CARDS;
         if (p >= 0.5) activeStep = i;
       }
 
@@ -136,9 +149,9 @@ export default function FeaturesSection() {
           </div>
           <div className="features-count">
             <div className="features-count-container" ref={countContainerRef}>
-              {["01", "02", "03", "04", "05"].map((n) => (
-                <span className="features-count-h" key={n}>
-                  {n}
+              {SUBHEADINGS.map((text, idx) => (
+                <span className="features-count-h" key={idx}>
+                  {text}
                 </span>
               ))}
             </div>
@@ -176,15 +189,6 @@ export default function FeaturesSection() {
             />
           ))}
         </div>
-      </section>
-
-      {/* ── Outro Section ──────────────────────────────────── */}
-      <section className="features-outro" id="features-outro">
-        <p>
-          My work reflects a commitment to quality and precision,{" "}
-          <span>delivering complete end-to-end web solutions</span> from
-          concept to live deployment.
-        </p>
       </section>
     </>
   );

@@ -1764,7 +1764,7 @@ svg{
 /* ── Arc Cards Container ── */
 .features-cards {
     position: absolute;
-    top: 25%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 150vw;
@@ -1777,7 +1777,7 @@ svg{
 .features-card {
     position: absolute;
     width: 500px;
-    height: 550px;
+    height: 440px;
     top: 50%;
     left: 50%;
     transform-origin: center center;
@@ -1790,9 +1790,12 @@ svg{
 }
 
 .features-card-img {
-    flex: 1;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     border-radius: 0.5em;
     overflow: hidden;
+    background-color: #111;
+    flex-shrink: 0;
 }
 
 .features-card-img img {
@@ -1804,15 +1807,16 @@ svg{
 
 .features-card-content {
     width: 100%;
-    height: 60px;
+    height: auto;
+    margin-top: 0.2rem;
 }
 
 .features-card-content p {
     text-align: left;
     color: #fff;
     font-size: 16px;
-    font-weight: 500;
-    line-height: 1.25;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 .features-empty {
@@ -1823,24 +1827,26 @@ svg{
 /* ── Feature Counter ── */
 .features-counter {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 120px;
+    left: 5%;
     display: flex;
     flex-direction: column;
-    margin: 2em;
     z-index: 2;
 }
 
 /* Both title and count clip their overflow to reveal one line at a time */
-.features-counter-title,
-.features-count {
+.features-counter-title {
     position: relative;
     width: 100vw;
-    height: 150px;
+    height: 110px;
     overflow: hidden;
 }
 
 .features-count {
+    position: relative;
+    width: 100vw;
+    height: 50px;
+    overflow: hidden;
     top: -10px;
 }
 
@@ -1858,13 +1864,13 @@ svg{
     text-transform: uppercase;
     font-family: 'Unbounded', 'Poppins', sans-serif;
     font-weight: 900;
-    font-size: 150px;
+    font-size: 110px;
     line-height: 1;
     letter-spacing: -0.04em;
-    height: 150px;
+    height: 110px;
 }
 
-/* "01" to "05" numbers */
+/* "01" to "05" numbers / subheadings */
 .features-count-h {
     display: block;
     width: 100%;
@@ -1872,10 +1878,10 @@ svg{
     text-transform: uppercase;
     font-family: 'Unbounded', 'Poppins', sans-serif;
     font-weight: 900;
-    font-size: 150px;
-    line-height: 1;
+    font-size: 42px;
+    line-height: 1.2;
     letter-spacing: -0.04em;
-    height: 150px;
+    height: 50px;
     will-change: transform;
 }
 
@@ -1907,32 +1913,47 @@ svg{
     color: #ff8c00;
 }
 
-/* ── Tablet (≤ 900px) — matches getCounterH() returning 50 ── */
-@media (max-width: 900px) {
+/* ── Tablet: iPad Pro Large Screen (850px - 1024px) ── */
+@media (max-width: 1024px) and (min-width: 850px) {
+    .features-counter {
+        top: 160px;
+        left: 5%;
+    }
+
     .features-counter-title {
-        height: 50px;
+        height: 80px;
     }
 
     .features-count {
-        height: 50px;
+        height: 40px;
         top: 0;
-        left: -10px;
+        left: -5px;
     }
 
-    .features-counter-h,
+    .features-counter-h {
+        font-size: 80px;
+        height: 80px;
+    }
+
     .features-count-h {
-        font-size: 50px;
-        height: 50px;
+        font-size: 32px;
+        height: 40px;
     }
 
     .features-cards {
-        top: 27.5%;
+        top: 42%;
     }
 
     .features-card {
-        width: 375px;
-        height: 500px;
-        margin-left: -187.5px;
+        width: 750px;
+        height: 580px;
+        margin-left: -375px;
+        gap: 1.5em;
+    }
+
+    .features-card-content p {
+        font-size: 24px;
+        line-height: 1.55;
     }
 
     .features-outro > p {
@@ -1940,26 +1961,89 @@ svg{
     }
 }
 
-/* ── Mobile / iPhone SE — matches getCounterH() returning 40 ── */
-@media (max-width: 480px) {
+/* ── Tablet: iPad Air / Standard Screen (481px - 849px) ── */
+@media (max-width: 849px) and (min-width: 481px) {
+    .features-counter {
+        top: 160px;
+        left: 5%;
+    }
+
     .features-counter-title {
-        height: 40px;
+        height: 65px;
     }
 
     .features-count {
-        height: 40px;
+        height: 35px;
+        top: 0;
+        left: -5px;
     }
 
-    .features-counter-h,
+    .features-counter-h {
+        font-size: 65px;
+        height: 65px;
+    }
+
     .features-count-h {
-        font-size: 40px;
-        height: 40px;
+        font-size: 28px;
+        height: 35px;
+    }
+
+    .features-cards {
+        top: 42%;
     }
 
     .features-card {
-        width: 300px;
-        height: 420px;
-        margin-left: -150px;
+        width: 580px;
+        height: 480px;
+        margin-left: -290px;
+        gap: 1.2em;
+    }
+
+    .features-card-content p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+    .features-outro > p {
+        width: 88%;
+    }
+}
+
+/* ── Mobile / iPhone SE & iPhone XR — matches getCounterH() returning 30 ── */
+@media (max-width: 480px) {
+    .features-counter {
+        top: 140px;
+        left: 5%;
+    }
+
+    .features-counter-title {
+        height: 50px;
+    }
+
+    .features-count {
+        height: 30px;
+        top: 0;
+    }
+
+    .features-counter-h {
+        font-size: 50px;
+        height: 50px;
+    }
+
+    .features-count-h {
+        font-size: 24px;
+        height: 30px;
+    }
+
+    .features-cards {
+        top: 45%;
+    }
+
+    .features-card {
+        width: 350px;
+        height: 330px;
+        margin-left: -175px;
+        gap: 1em;
     }
 
     .features-card-content {
@@ -1967,6 +2051,7 @@ svg{
     }
 
     .features-card-content p {
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 1.45;
     }
 }
