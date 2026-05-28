@@ -151,6 +151,14 @@ export default function Projects() {
       className="projects-sticky-section"
       id="projects"
     >
+      {/* Video background — same as original */}
+      <div className="video-background-container">
+        <video autoPlay muted loop playsInline id="projects-video-bg">
+          <source src="/assets/vids/projects-abstract-vid-background.mp4" type="video/mp4" />
+        </video>
+        <div className="video-overlay"></div>
+      </div>
+
       {/* Section label */}
       <div className="projects-sticky-label">
         <h2 className="heading">Projects</h2>
