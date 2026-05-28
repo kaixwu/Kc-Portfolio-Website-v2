@@ -58,7 +58,7 @@ export default function FeaturesSection() {
 
   useEffect(() => {
     // Sticky scroll height — optimized to prevent empty black scroll space at the end
-    const stickyHeight = window.innerHeight * 3.5;
+    const stickyHeight = window.innerHeight * 2.0;
 
     // Responsive radius — standardizing breakpoint to 1024px for iPad Pro support
     const getRadius = () =>
@@ -85,7 +85,7 @@ export default function FeaturesSection() {
         if (!card) return;
 
         // Progress for this specific card along the arc (starts with first card centered)
-        const p = 0.5 + progress * (5.5 / TOTAL_CARDS) - i / TOTAL_CARDS;
+        const p = 0.5 + progress * (4 / TOTAL_CARDS) - i / TOTAL_CARDS;
         const angle = START_ANGLE + ARC_ANGLE * p;
 
         // Convert polar → Cartesian (screen coords: y grows downward)
@@ -108,7 +108,7 @@ export default function FeaturesSection() {
       // When a card's p >= 0.5, it has reached or passed the front-center position
       let activeStep = -1; // -1 = no card at front yet → counter hidden
       for (let i = 0; i < FEATURES.length; i++) {
-        const p = 0.5 + progress * (5.5 / TOTAL_CARDS) - i / TOTAL_CARDS;
+        const p = 0.5 + progress * (4 / TOTAL_CARDS) - i / TOTAL_CARDS;
         if (p >= 0.5) activeStep = i;
       }
 

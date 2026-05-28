@@ -76,7 +76,8 @@ export default function Projects() {
 
     const cards = cardsRef.current;
     const totalCards = cards.length;
-    const segmentSize = 1 / totalCards;
+    const activeTransitions = totalCards - 1; // 2 active transitions (card 0 & card 1 fly up)
+    const segmentSize = 1 / activeTransitions; // 0.5 segment width
     const cardOffset = 40;
     const cardScaleStep = 0.065;
 
@@ -95,7 +96,7 @@ export default function Projects() {
       ScrollTrigger.create({
         trigger: sectionRef.current,
         start: "top top",
-        end: () => `+=${window.innerHeight * (totalCards + 1)}px`,
+        end: () => `+=${window.innerHeight * activeTransitions}px`, // 2 * innerHeight pinning duration
         pin: true,
         pinSpacing: true,
         scrub: 1,
@@ -103,7 +104,7 @@ export default function Projects() {
           const progress = self.progress;
           const activeIndex = Math.min(
             Math.floor(progress / segmentSize),
-            totalCards - 1
+            activeTransitions - 1
           );
           const segmentProgress =
             (progress - activeIndex * segmentSize) / segmentSize;
