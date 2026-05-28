@@ -1,4 +1,4 @@
-@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+﻿@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 @import url('https://fonts.cdnfonts.com/css/poppins');
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&display=swap');
 * {
@@ -1426,7 +1426,7 @@ svg{
 }
 
 /* ============================================================
-   3D STICKY CARD STACK – PROJECTS SECTION
+   3D STICKY CARD STACK â€“ PROJECTS SECTION
    All selectors are scoped to .projects-sticky-* to avoid
    any interference with existing portfolio styles.
    ============================================================ */
@@ -1542,7 +1542,7 @@ svg{
     border-radius: 1.1rem;
 }
 
-/* ── Responsive: Tablet (≤ 900px) ────────────────────────── */
+/* â”€â”€ Responsive: Tablet (â‰¤ 900px) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media (max-width: 900px) {
     .projects-sticky-card {
         width: 90%;
@@ -1570,7 +1570,7 @@ svg{
     }
 }
 
-/* ── Responsive: Mobile (≤ 480px) incl. iPhone SE 375×667 ── */
+/* â”€â”€ Responsive: Mobile (â‰¤ 480px) incl. iPhone SE 375Ã—667 â”€â”€ */
 @media (max-width: 480px) {
     .projects-sticky-section {
         perspective: 600px;
@@ -1637,7 +1637,7 @@ svg{
     overflow: hidden;
 }
 
-/* Left black panel — floated to cover left 50% */
+/* Left black panel â€” floated to cover left 50% */
 .featured-project__left {
     position: absolute;
     top: 0;
@@ -1685,7 +1685,7 @@ svg{
     right: 0;
 }
 
-/* Description paragraph — bottom-left of the black panel */
+/* Description paragraph â€” bottom-left of the black panel */
 .featured-project__desc {
     font-family: 'Poppins', sans-serif;
     font-size: clamp(12px, 1.1vw, 16px);
@@ -1699,7 +1699,7 @@ svg{
     z-index: 2;
 }
 
-/* ── Responsive: Tablet ── */
+/* â”€â”€ Responsive: Tablet â”€â”€ */
 @media (max-width: 900px) {
     .featured-project__left {
         width: 100%;
@@ -1713,7 +1713,7 @@ svg{
     }
 }
 
-/* ── Responsive: Mobile incl. iPhone SE 375×667 ── */
+/* â”€â”€ Responsive: Mobile incl. iPhone SE 375Ã—667 â”€â”€ */
 @media (max-width: 480px) {
     .featured-project__word {
         font-size: clamp(36px, 13vw, 60px);
@@ -1743,9 +1743,9 @@ svg{
 }
 
 /* ============================================================
-   FEATURES SECTION — Arc Card Scroll Animation (Codegrid)
+   FEATURES SECTION â€” Arc Card Scroll Animation (Codegrid)
    All selectors prefixed with .features-* to prevent conflicts.
-   NOTE: html/body height is NOT set here — GSAP pinSpacing
+   NOTE: html/body height is NOT set here â€” GSAP pinSpacing
          handles the extra scroll space automatically.
    ============================================================ */
 
@@ -1761,7 +1761,7 @@ svg{
     color: #fff;
 }
 
-/* ── Arc Cards Container ── */
+/* â”€â”€ Arc Cards Container â”€â”€ */
 .features-cards {
     position: absolute;
     top: 40%;
@@ -1773,7 +1773,7 @@ svg{
     pointer-events: none;
 }
 
-/* Individual card — GSAP positions these via x/y/rotation */
+/* Individual card â€” GSAP positions these via x/y/rotation */
 .features-card {
     position: absolute;
     width: 500px;
@@ -1824,7 +1824,7 @@ svg{
     pointer-events: none;
 }
 
-/* ── Feature Counter ── */
+/* â”€â”€ Feature Counter â”€â”€ */
 .features-counter {
     position: absolute;
     top: 120px;
@@ -1850,7 +1850,7 @@ svg{
     top: -10px;
 }
 
-/* GSAP controls translateY on this element — no CSS transform here */
+/* GSAP controls translateY on this element â€” no CSS transform here */
 .features-count-container {
     position: relative;
     will-change: transform;
@@ -1885,7 +1885,7 @@ svg{
     will-change: transform;
 }
 
-/* ── Outro Section ── */
+/* â”€â”€ Outro Section â”€â”€ */
 .features-outro {
     position: relative;
     width: 100%;
@@ -1913,7 +1913,7 @@ svg{
     color: #ff8c00;
 }
 
-/* ── Tablet: iPad Pro Large Screen (850px - 1024px) ── */
+/* â”€â”€ Tablet: iPad Pro Large Screen (850px - 1024px) â”€â”€ */
 @media (max-width: 1024px) and (min-width: 850px) {
     .features-counter {
         top: 160px;
@@ -1961,7 +1961,7 @@ svg{
     }
 }
 
-/* ── Tablet: iPad Air / Standard Screen (481px - 849px) ── */
+/* â”€â”€ Tablet: iPad Air / Standard Screen (481px - 849px) â”€â”€ */
 @media (max-width: 849px) and (min-width: 481px) {
     .features-counter {
         top: 160px;
@@ -2009,7 +2009,7 @@ svg{
     }
 }
 
-/* ── Mobile / iPhone SE & iPhone XR — matches getCounterH() returning 30 ── */
+/* â”€â”€ Mobile / iPhone SE & iPhone XR â€” matches getCounterH() returning 30 â”€â”€ */
 @media (max-width: 480px) {
     .features-counter {
         top: 140px;
@@ -2055,3 +2055,79 @@ svg{
         line-height: 1.45;
     }
 }
+
+/* ============================================================
+   LANDING HERO OVERLAY  (lh-*)
+   Fixed full-screen preloader/intro animation.
+   Plays on page load then fades away to reveal the Hero section.
+   All selectors scoped to lh-* to avoid conflicts.
+   ============================================================ */
+
+/* â”€â”€ Full-screen overlay (sits on top of everything) â”€â”€â”€â”€â”€â”€â”€ */
+.lh-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--bg-color);
+    overflow: hidden;
+}
+
+/* â”€â”€ Split curtain panels â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.lh-revealers {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Top half â€” slides up via clip-path */
+.lh-r1 {
+    flex: 1;
+    background: var(--bg-color);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* Bottom half â€” slides down via clip-path */
+.lh-r2 {
+    flex: 1;
+    background: var(--bg-color);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* â”€â”€ Cycling image tiles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+.lh-cycling-img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 5;
+}
+
+.lh-cycling-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* â”€â”€ Final image (morphs into Hero profile circle) â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* GSAP sets explicit pixel values at runtime; CSS just provides
+   the img fill behaviour. */
+.lh-final-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 6;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.lh-final-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
+
