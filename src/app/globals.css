@@ -1,4 +1,4 @@
-﻿@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 @import url('https://fonts.cdnfonts.com/css/poppins');
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&display=swap');
 * {
@@ -1741,6 +1741,7 @@ svg{
         bottom: 3rem;
     }
 }
+
 
 /* ============================================================
    FEATURES SECTION â€” Arc Card Scroll Animation (Codegrid)

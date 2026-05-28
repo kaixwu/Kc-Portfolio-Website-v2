@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const CARDS = [
   {
@@ -34,15 +37,15 @@ const CARDS = [
   },
   {
     id: "card-3",
-    category: "Online Catalog",
-    title: "Kc Best Sales, Inc.",
+    category: "Portfolio Website",
+    title: "Kc Portfolio Website",
     description:
-      "This project involved building a professional online catalog for KC Best Sales, Inc., a major distributor of truck and off-the-road (OTR) tires. The client needed a clear, credible way to present their products and technical data. I built a responsive website that highlights their core brands and allows customers to easily browse, compare tire models, and access detailed specification tables.",
-    href: "/projects/kc-best-sales",
-    img: "/assets/img/kc-best-sales-hero-background.webp",
-    imgAlt: "Kc Best Sales Project Thumbnail",
-    bg: "#160e1a",
-    accent: "#7a3fa0",
+      "Designed and built this very portfolio from the ground up using Next.js 16, React 19, GSAP, and vanilla CSS. Features a cinematic intro animation, scroll-driven arc card gallery, sticky 3D project stack, parallax destination slider, and a fully responsive layout covering every screen from iPhone SE to 4K desktop.",
+    href: "/projects/kc-portfolio",
+    img: "/assets/img/kc-org-img3.jpg",
+    imgAlt: "Kc Portfolio Website Thumbnail",
+    bg: "#0d1117",
+    accent: "#ea580c",
   },
 ];
 
@@ -50,7 +53,7 @@ export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
     // Lenis: only init if not already running site-wide.
@@ -139,6 +142,12 @@ export default function Projects() {
     }, sectionRef);
 
     return () => {
+      const section = sectionRef.current;
+      ScrollTrigger.getAll().forEach((st) => {
+        if (section && st.trigger && section.contains(st.trigger as Node)) {
+          st.kill(true);
+        }
+      });
       ctx.revert();
       if (lenis) {
         lenis.destroy();

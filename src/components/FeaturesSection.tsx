@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 // ── Content adapted for Kc's portfolio ──────────────────────
 const FEATURES = [
@@ -56,7 +59,7 @@ export default function FeaturesSection() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const countContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     // Sticky scroll height — optimized to prevent empty black scroll space at the end
     const stickyHeight = window.innerHeight * 2.0;
 
@@ -135,7 +138,20 @@ export default function FeaturesSection() {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      // Explicitly kill every ScrollTrigger whose trigger element is inside
+      // this section BEFORE calling ctx.revert(). GSAP's pin:true injects a
+      // pin-spacer <div> into the real DOM; if we let React unmount first,
+      // the spacer is already orphaned and ScrollTrigger.revert() throws
+      // "removeChild: not a child of this node". Killing first removes spacers cleanly.
+      const section = sectionRef.current;
+      ScrollTrigger.getAll().forEach((st) => {
+        if (section && st.trigger && section.contains(st.trigger as Node)) {
+          st.kill(true);
+        }
+      });
+      ctx.revert();
+    };
   }, []);
 
   return (
