@@ -1423,3 +1423,195 @@ svg{
         height: 70vw;
     }
 }
+
+/* ============================================================
+   3D STICKY CARD STACK – PROJECTS SECTION
+   All selectors are scoped to .projects-sticky-* to avoid
+   any interference with existing portfolio styles.
+   ============================================================ */
+
+.projects-sticky-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    perspective: 900px;
+    background-color: var(--bg-color);
+}
+
+/* Heading label sits above the stack */
+.projects-sticky-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.projects-sticky-label .heading {
+    margin: 3rem 0 0;
+    font-size: 5rem;
+}
+
+/* Each card is absolutely centered via GSAP xPercent/yPercent */
+.projects-sticky-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 68%;
+    min-height: 56%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 2.5rem;
+    padding: 3rem 3.5rem;
+    border-radius: 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    transform-origin: center bottom;
+    will-change: transform;
+    overflow: hidden;
+}
+
+/* Left column: text content */
+.projects-sticky-col--text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    color: #fff;
+}
+
+.projects-sticky-category {
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.55;
+}
+
+.projects-sticky-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #fff;
+    margin: 0;
+}
+
+.projects-sticky-desc {
+    font-size: 1.45rem;
+    line-height: 1.75;
+    opacity: 0.78;
+    flex: 1;
+}
+
+.projects-sticky-btn {
+    align-self: flex-start;
+    background-color: transparent;
+    box-shadow: none;
+    border: 2px solid;
+    font-size: 1.5rem;
+    padding: 0.8rem 2.4rem;
+    border-radius: 3rem;
+    font-weight: 600;
+    transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    color: inherit;
+}
+
+.projects-sticky-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: none;
+}
+
+/* Right column: image */
+.projects-sticky-col--img {
+    flex: 1.1;
+    border-radius: 1.1rem;
+    overflow: hidden;
+}
+
+.projects-sticky-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 1.1rem;
+}
+
+/* ── Responsive: Tablet (≤ 900px) ────────────────────────── */
+@media (max-width: 900px) {
+    .projects-sticky-card {
+        width: 90%;
+        min-height: 65%;
+        flex-direction: column;
+        padding: 2.5rem 2rem;
+        gap: 1.8rem;
+    }
+
+    .projects-sticky-col--img {
+        flex: none;
+        height: 200px;
+    }
+
+    .projects-sticky-title {
+        font-size: 3rem;
+    }
+
+    .projects-sticky-desc {
+        font-size: 1.35rem;
+    }
+
+    .projects-sticky-label .heading {
+        font-size: 4rem;
+    }
+}
+
+/* ── Responsive: Mobile (≤ 480px) incl. iPhone SE 375×667 ── */
+@media (max-width: 480px) {
+    .projects-sticky-section {
+        perspective: 600px;
+    }
+
+    .projects-sticky-card {
+        width: 92%;
+        min-height: 70%;
+        padding: 2rem 1.6rem;
+        gap: 1.4rem;
+        border-radius: 1.2rem;
+    }
+
+    .projects-sticky-label .heading {
+        font-size: 3.2rem;
+        margin: 2rem 0 0;
+    }
+
+    .projects-sticky-category {
+        font-size: 1.1rem;
+    }
+
+    .projects-sticky-title {
+        font-size: 2.4rem;
+    }
+
+    .projects-sticky-desc {
+        font-size: 1.25rem;
+        line-height: 1.65;
+        /* Limit lines on tiny screens */
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .projects-sticky-col--img {
+        height: 160px;
+    }
+
+    .projects-sticky-btn {
+        font-size: 1.35rem;
+        padding: 0.7rem 2rem;
+    }
+}
