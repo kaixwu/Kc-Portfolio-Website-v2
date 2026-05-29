@@ -12,6 +12,7 @@ import Organizations from "@/components/Organizations";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import TechMarquee from "@/components/TechMarquee";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <FeaturedProjectSection />
         <FeaturesSection />
         <Services />
+        <TechMarquee />
         <Projects />
         <About />
         <DestinationSlider />

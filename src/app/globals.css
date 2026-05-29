@@ -1,4 +1,4 @@
-@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+﻿@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 @import url('https://fonts.cdnfonts.com/css/poppins');
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&display=swap');
 * {
@@ -1426,7 +1426,7 @@ svg{
 }
 
 /* ============================================================
-   3D STICKY CARD STACK â€“ PROJECTS SECTION
+   3D STICKY CARD STACK Ã¢â‚¬â€œ PROJECTS SECTION
    All selectors are scoped to .projects-sticky-* to avoid
    any interference with existing portfolio styles.
    ============================================================ */
@@ -1542,7 +1542,7 @@ svg{
     border-radius: 1.1rem;
 }
 
-/* â”€â”€ Responsive: Tablet (â‰¤ 900px) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Tablet (Ã¢â€°Â¤ 900px) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 900px) {
     .projects-sticky-card {
         width: 90%;
@@ -1570,7 +1570,7 @@ svg{
     }
 }
 
-/* â”€â”€ Responsive: Mobile (â‰¤ 480px) incl. iPhone SE 375Ã—667 â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Mobile (Ã¢â€°Â¤ 480px) incl. iPhone SE 375Ãƒâ€”667 Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 480px) {
     .projects-sticky-section {
         perspective: 600px;
@@ -1637,7 +1637,7 @@ svg{
     overflow: hidden;
 }
 
-/* Left black panel â€” floated to cover left 50% */
+/* Left black panel Ã¢â‚¬â€ floated to cover left 50% */
 .featured-project__left {
     position: absolute;
     top: 0;
@@ -1685,7 +1685,7 @@ svg{
     right: 0;
 }
 
-/* Description paragraph â€” bottom-left of the black panel */
+/* Description paragraph Ã¢â‚¬â€ bottom-left of the black panel */
 .featured-project__desc {
     font-family: 'Poppins', sans-serif;
     font-size: clamp(12px, 1.1vw, 16px);
@@ -1699,7 +1699,7 @@ svg{
     z-index: 2;
 }
 
-/* â”€â”€ Responsive: Tablet â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Tablet Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 900px) {
     .featured-project__left {
         width: 100%;
@@ -1713,7 +1713,7 @@ svg{
     }
 }
 
-/* â”€â”€ Responsive: Mobile incl. iPhone SE 375Ã—667 â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Mobile incl. iPhone SE 375Ãƒâ€”667 Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 480px) {
     .featured-project__word {
         font-size: clamp(36px, 13vw, 60px);
@@ -1744,9 +1744,9 @@ svg{
 
 
 /* ============================================================
-   FEATURES SECTION â€” Arc Card Scroll Animation (Codegrid)
+   FEATURES SECTION Ã¢â‚¬â€ Arc Card Scroll Animation (Codegrid)
    All selectors prefixed with .features-* to prevent conflicts.
-   NOTE: html/body height is NOT set here â€” GSAP pinSpacing
+   NOTE: html/body height is NOT set here Ã¢â‚¬â€ GSAP pinSpacing
          handles the extra scroll space automatically.
    ============================================================ */
 
@@ -1762,7 +1762,7 @@ svg{
     color: #fff;
 }
 
-/* â”€â”€ Arc Cards Container â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Arc Cards Container Ã¢â€â‚¬Ã¢â€â‚¬ */
 .features-cards {
     position: absolute;
     top: 40%;
@@ -1774,7 +1774,7 @@ svg{
     pointer-events: none;
 }
 
-/* Individual card â€” GSAP positions these via x/y/rotation */
+/* Individual card Ã¢â‚¬â€ GSAP positions these via x/y/rotation */
 .features-card {
     position: absolute;
     width: 500px;
@@ -1825,7 +1825,7 @@ svg{
     pointer-events: none;
 }
 
-/* â”€â”€ Feature Counter â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Feature Counter Ã¢â€â‚¬Ã¢â€â‚¬ */
 .features-counter {
     position: absolute;
     top: 120px;
@@ -1851,7 +1851,7 @@ svg{
     top: -10px;
 }
 
-/* GSAP controls translateY on this element â€” no CSS transform here */
+/* GSAP controls translateY on this element Ã¢â‚¬â€ no CSS transform here */
 .features-count-container {
     position: relative;
     will-change: transform;
@@ -1886,7 +1886,7 @@ svg{
     will-change: transform;
 }
 
-/* â”€â”€ Outro Section â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Outro Section Ã¢â€â‚¬Ã¢â€â‚¬ */
 .features-outro {
     position: relative;
     width: 100%;
@@ -1914,7 +1914,7 @@ svg{
     color: #ff8c00;
 }
 
-/* â”€â”€ Tablet: iPad Pro Large Screen (850px - 1024px) â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Tablet: iPad Pro Large Screen (850px - 1024px) Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 1024px) and (min-width: 850px) {
     .features-counter {
         top: 160px;
@@ -1962,7 +1962,7 @@ svg{
     }
 }
 
-/* â”€â”€ Tablet: iPad Air / Standard Screen (481px - 849px) â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Tablet: iPad Air / Standard Screen (481px - 849px) Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 849px) and (min-width: 481px) {
     .features-counter {
         top: 160px;
@@ -2010,7 +2010,7 @@ svg{
     }
 }
 
-/* â”€â”€ Mobile / iPhone SE & iPhone XR â€” matches getCounterH() returning 30 â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Mobile / iPhone SE & iPhone XR Ã¢â‚¬â€ matches getCounterH() returning 30 Ã¢â€â‚¬Ã¢â€â‚¬ */
 @media (max-width: 480px) {
     .features-counter {
         top: 140px;
@@ -2064,7 +2064,7 @@ svg{
    All selectors scoped to lh-* to avoid conflicts.
    ============================================================ */
 
-/* â”€â”€ Full-screen overlay (sits on top of everything) â”€â”€â”€â”€â”€â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Full-screen overlay (sits on top of everything) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 .lh-overlay {
     position: fixed;
     inset: 0;
@@ -2073,7 +2073,7 @@ svg{
     overflow: hidden;
 }
 
-/* â”€â”€ Split curtain panels â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Split curtain panels Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 .lh-revealers {
     position: absolute;
     inset: 0;
@@ -2083,21 +2083,21 @@ svg{
     pointer-events: none;
 }
 
-/* Top half â€” slides up via clip-path */
+/* Top half Ã¢â‚¬â€ slides up via clip-path */
 .lh-r1 {
     flex: 1;
     background: var(--bg-color);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-/* Bottom half â€” slides down via clip-path */
+/* Bottom half Ã¢â‚¬â€ slides down via clip-path */
 .lh-r2 {
     flex: 1;
     background: var(--bg-color);
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-/* â”€â”€ Cycling image tiles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Cycling image tiles Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 .lh-cycling-img {
     position: absolute;
     inset: 0;
@@ -2111,7 +2111,7 @@ svg{
     object-fit: cover;
 }
 
-/* â”€â”€ Final image (morphs into Hero profile circle) â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ Final image (morphs into Hero profile circle) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 /* GSAP sets explicit pixel values at runtime; CSS just provides
    the img fill behaviour. */
 .lh-final-img {
@@ -2132,3 +2132,246 @@ svg{
     object-position: top center;
 }
 
+
+/* ============================================================
+   TECH MARQUEE SECTION  (tmq-*)
+   Scroll-driven horizontal marquee with SVG tech stack icons.
+   All selectors scoped to tmq-* to prevent conflicts.
+   ============================================================ */
+
+.tmq-section {
+    min-height: unset !important;
+    padding: 0 !important;
+    width: 100%;
+    background: #0a0a0a;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Section Heading */
+.tmq-heading {
+    text-align: center;
+    padding: 7rem 15% 3rem;
+}
+
+.tmq-heading .heading {
+    margin: 0 0 1rem;
+}
+
+.tmq-subheading {
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* Row Column */
+.tmq-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 0 0 7rem;
+}
+
+/*
+   Each row container:
+   width: 130%  container is wider than the section on both sides.
+   left: -15%   (130-100)/2 = 15% centres the container symmetrically,
+                overflowing 15% on left AND 15% on right.
+   Section overflow:hidden clips the horizontal excess.
+*/
+.tmq-row-container {
+    position: relative;
+    width: 130%;
+    left: -15%;
+    height: clamp(88px, 12vw, 175px);
+    overflow: hidden;
+}
+
+/* Marquee Track */
+.tmq-marquee {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    will-change: transform;
+    width: max-content;
+}
+
+/* Alternate starting offsets for staggered feel */
+.tmq-odd  .tmq-marquee { left: -8%; }
+.tmq-even .tmq-marquee { left:  0%; }
+
+/* Individual Tile */
+.tmq-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: clamp(88px, 12vw, 175px);
+    width:  clamp(88px, 12vw, 175px);
+    border-radius: 1.2rem;
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+    gap: 0.5rem;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    cursor: default;
+}
+
+.tmq-item:hover {
+    background: #1d1d1d;
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* SVG Icon - brand color via inline style on the React component */
+.tmq-item--icon svg {
+    width:  clamp(32px, 5vw, 68px);
+    height: clamp(32px, 5vw, 68px);
+    flex-shrink: 0;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.tmq-item--icon:hover svg {
+    filter: drop-shadow(0 0 10px currentColor) brightness(1.25);
+    transform: scale(1.12);
+}
+
+/* Tech name label */
+.tmq-icon-label {
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.tmq-item--icon:hover .tmq-icon-label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Text Label Tile */
+.tmq-item--text {
+    width: clamp(120px, 18vw, 280px);
+    background: transparent;
+    border-color: transparent;
+}
+
+.tmq-item--text:hover {
+    background: transparent;
+    border-color: transparent;
+}
+
+.tmq-label {
+    font-family: "Unbounded", sans-serif;
+    font-size: clamp(28px, 5.5vw, 88px);
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* SplitType char spans */
+.tmq-label .char {
+    display: inline;
+    will-change: font-weight;
+}
+
+/* Duplicate sets are decorative only */
+.tmq-dupe-set * {
+    pointer-events: none;
+    user-select: none;
+}
+
+/* iPad Pro (<=1024px) */
+@media (max-width: 1024px) {
+    .tmq-heading {
+        padding: 5rem 8% 2.5rem;
+    }
+    .tmq-row-container {
+        height: clamp(80px, 11vw, 140px);
+    }
+    .tmq-item {
+        height: clamp(80px, 11vw, 140px);
+        width:  clamp(80px, 11vw, 140px);
+    }
+    .tmq-item--text {
+        width: clamp(110px, 17vw, 230px);
+    }
+    .tmq-label {
+        font-size: clamp(26px, 5.5vw, 72px);
+    }
+}
+
+/* iPad Mini (<=768px) */
+@media (max-width: 768px) {
+    .tmq-heading {
+        padding: 4rem 6% 2rem;
+    }
+    .tmq-rows {
+        gap: 0.9rem;
+        padding: 0 0 5rem;
+    }
+    .tmq-row-container {
+        height: clamp(72px, 12vw, 110px);
+    }
+    .tmq-item {
+        height: clamp(72px, 12vw, 110px);
+        width:  clamp(72px, 12vw, 110px);
+        border-radius: 0.8rem;
+        gap: 0.35rem;
+    }
+    .tmq-item--icon svg {
+        width:  clamp(28px, 5vw, 44px);
+        height: clamp(28px, 5vw, 44px);
+    }
+    .tmq-item--text {
+        width: clamp(100px, 16vw, 180px);
+    }
+    .tmq-label {
+        font-size: clamp(24px, 5.5vw, 56px);
+    }
+}
+
+/* Mobile / iPhone SE to 14 Pro Max (<=480px) */
+@media (max-width: 480px) {
+    .tmq-heading {
+        padding: 3.5rem 5% 1.5rem;
+    }
+    .tmq-subheading {
+        font-size: 1.2rem;
+    }
+    .tmq-rows {
+        gap: 0.7rem;
+        padding: 0 0 4rem;
+    }
+    .tmq-row-container {
+        height: 68px;
+    }
+    .tmq-item {
+        height: 68px;
+        width:  68px;
+        border-radius: 0.7rem;
+        gap: 0.25rem;
+    }
+    .tmq-item--icon svg {
+        width:  26px;
+        height: 26px;
+    }
+    .tmq-icon-label {
+        font-size: 0.72rem;
+    }
+    .tmq-item--text {
+        width: 90px;
+    }
+    .tmq-label {
+        font-size: clamp(20px, 6vw, 30px);
+    }
+}
