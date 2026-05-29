@@ -177,8 +177,20 @@ export default function FeaturesSection() {
             opacity: 0.35 // Make it subtle to not overpower the content
           }}
         >
-          <source src="/assets/features-bg.mp4" type="video/mp4" />
+          <source src="/assets/vids/features-bg.mp4" type="video/mp4" />
         </video>
+
+        {/* Video Attribution */}
+        <div style={{
+          position: "absolute",
+          bottom: "10px",
+          right: "15px",
+          zIndex: 1,
+          fontSize: "0.75rem",
+          color: "rgba(255, 255, 255, 0.3)",
+        }}>
+          Video by <a href="https://pixabay.com/users/olenchic-16658974/?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=202587" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "underline", color: "inherit" }}>Olena</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=202587" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "underline", color: "inherit" }}>Pixabay</a>
+        </div>
 
         {/* Feature Counter */}
         <div className="features-counter" style={{ zIndex: 1 }}>
