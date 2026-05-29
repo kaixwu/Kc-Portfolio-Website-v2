@@ -56,8 +56,28 @@ const TOTAL_TRAVEL = 1 + TOTAL_CARDS / 7;
 
 export default function FeaturesSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const countContainerRef = useRef<HTMLDivElement>(null);
+
+  // Play/pause video based on viewport visibility to save GPU/Battery
+  useIsomorphicLayoutEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0 });
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     // Sticky scroll height — optimized to prevent empty black scroll space at the end
@@ -161,6 +181,7 @@ export default function FeaturesSection() {
         
         {/* Background Video */}
         <video 
+          ref={videoRef}
           autoPlay 
           loop 
           muted 

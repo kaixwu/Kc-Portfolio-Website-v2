@@ -304,9 +304,12 @@ export default function FluidGradient({
         window.addEventListener('mouseleave', handleMouseLeave);
 
         let animationFrameId: number;
+        let isVisible = false;
 
         function animate() {
             animationFrameId = requestAnimationFrame(animate);
+
+            if (!isVisible) return; // Skip heavy WebGL rendering if off-screen
 
             const time = performance.now() * 0.001;
             fluidMaterial.uniforms.iTime.value = time;
@@ -332,6 +335,15 @@ export default function FluidGradient({
             frameCount++;
         }
 
+        // Use IntersectionObserver to pause rendering when canvas is not visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                isVisible = entry.isIntersecting;
+            });
+        }, { threshold: 0 });
+        
+        observer.observe(container);
+
         const handleResize = () => {
             if (!container) return;
             width = container.clientWidth || window.innerWidth;
@@ -351,6 +363,8 @@ export default function FluidGradient({
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseleave', handleMouseLeave);
             window.removeEventListener('resize', handleResize);
+
+            observer.disconnect();
 
             geometry.dispose();
             fluidMaterial.dispose();

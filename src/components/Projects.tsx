@@ -51,7 +51,27 @@ const CARDS = [
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
+
+  // Play/pause video based on viewport visibility to save GPU/Battery
+  useIsomorphicLayoutEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0 });
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -163,7 +183,7 @@ export default function Projects() {
     >
       {/* Video background — same as original */}
       <div className="video-background-container">
-        <video autoPlay muted loop playsInline id="projects-video-bg">
+        <video ref={videoRef} muted loop playsInline id="projects-video-bg">
           <source src="/assets/vids/projects-abstract-vid-background.mp4" type="video/mp4" />
         </video>
         <div className="video-overlay"></div>
