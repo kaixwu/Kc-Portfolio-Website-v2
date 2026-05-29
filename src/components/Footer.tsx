@@ -47,15 +47,15 @@ export default function Footer({ isProjectPage = false }: FooterProps) {
           ) : (
             <>
               <li><a href="#faq">FAQ</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#projects">PROJECTS</a></li>
+              <li><a href="#contact">CONTACT</a></li>
             </>
           )}
         </ul>
 
         <p className="copyright">
-          Kc Casipit | All Rights Reserved
+          Kc Casipit | All Rights Reserved 2026
         </p>
       </div>
     </footer>

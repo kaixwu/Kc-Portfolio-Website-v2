@@ -293,7 +293,10 @@ section{
 
 .btn-group {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
+    margin-top: clamp(2rem, 4vw, 4rem);
 }
 
 .btn-group-about {
@@ -489,6 +492,8 @@ section{
 
 .footer ul li a {
     color: white;
+    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-weight: 900;
     border-bottom: 3px solid transparent;
     transition: 0.3s ease-in-out;
 }
@@ -1271,8 +1276,10 @@ section{
 
     .home {
         flex-direction: column-reverse;
-        margin: 5rem 0;
-        gap: 5rem;
+        padding: 12rem 5% 5rem;
+        margin: 0;
+        gap: 3rem;
+        min-height: 100vh;
     }
 
     .home-content {
@@ -1281,7 +1288,9 @@ section{
     }
 
     .home-img img {
-        width: 56vw;
+        width: 80vw;
+        max-width: 350px;
+        margin-top: 2rem;
     }
 
     .about{

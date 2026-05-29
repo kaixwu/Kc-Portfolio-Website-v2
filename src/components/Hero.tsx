@@ -24,26 +24,14 @@ export default function Hero() {
           I specialize in Wordpress and CSS Effects and love turning complex problems into simple, elegant solutions.
         </p>
 
-        <div className="social-icons">
-          <a href="https://github.com/kaixwu/" target="_blank" rel="noopener noreferrer">
-            <i className="bx bxl-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/kyle-christian-casipit-55520b33a/" target="_blank" rel="noopener noreferrer">
-            <i className="bx bxl-linkedin-square"></i>
-          </a>
-          <a href="https://www.instagram.com/kaixwu/" target="_blank" rel="noopener noreferrer">
-            <i className="bx bxl-instagram-alt"></i>
-          </a>
-        </div>
+
 
         <div className="btn-group">
           <a
-            href="https://docs.google.com/document/d/1TrskzdxG6aCopOvLwVftjDqCgChCq2B_nzJD9YmZGq8/edit?usp=sharing"
+            href="#projects"
             className="btn"
-            target="_blank"
-            rel="noopener noreferrer"
           >
-            View Kc's Resume
+            View Kc's Projects
           </a>
           <a href="#contact" className="btn">Contact Me</a>
         </div>
