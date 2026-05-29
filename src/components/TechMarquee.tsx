@@ -25,7 +25,13 @@ import {
   SiGooglemaps,
   SiGooglegemini,
   SiUnsplash,
+  SiWordpress,
+  SiSquarespace,
+  SiWix,
+  SiElementor,
+  SiOxygen,
 } from "react-icons/si";
+import { FaWeebly } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -90,6 +96,17 @@ const ROWS: MarqueeRow[] = [
       { Icon: SiGooglemaps,   name: "Places",   color: "#4285F4" },
       { Icon: SiGooglegemini, name: "Gemini",   color: "#8E75B2" },
       { Icon: SiUnsplash,     name: "Unsplash", color: "#D0D0D0" },
+    ],
+  },
+  {
+    label: "CMS",
+    icons: [
+      { Icon: SiWordpress,    name: "WordPress",   color: "#21759B" },
+      { Icon: SiSquarespace,  name: "Squarespace", color: "#FFFFFF" },
+      { Icon: FaWeebly,       name: "Weebly",      color: "#3092FA" },
+      { Icon: SiWix,          name: "Wix",         color: "#FFFFFF" },
+      { Icon: SiElementor,    name: "Elementor",   color: "#D53F8C" },
+      { Icon: SiOxygen,       name: "Oxygen",      color: "#FFFFFF" },
     ],
   },
 ];
