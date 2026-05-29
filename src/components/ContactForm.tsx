@@ -16,6 +16,9 @@ export default function ContactForm() {
   useEffect(() => {
     // Force autoplay on mobile browsers which sometimes ignore the autoPlay attribute
     if (videoRef.current) {
+      // iOS Safari requires explicit muted properties
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
       videoRef.current.play().catch((error) => {
         console.warn("Video autoplay blocked by browser:", error);
       });
@@ -53,12 +56,13 @@ export default function ContactForm() {
         <video
           ref={videoRef}
           id="contact-video-bg"
-          src="/assets/vids/contactme-abstract-vid-background.mp4"
           autoPlay
           loop
           muted
           playsInline
-        />
+        >
+          <source src="/assets/vids/contactme-abstract-vid-background.mp4" type="video/mp4" />
+        </video>
         <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.6)" }}></div>
       </div>
       <h2 className="heading" style={{ position: "relative", zIndex: 1 }}>
