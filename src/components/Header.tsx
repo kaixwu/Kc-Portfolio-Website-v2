@@ -87,10 +87,10 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
   useIsomorphicLayoutEffect(() => {
     if (!hasMounted.current || !menuBgSvgRef.current || !menuBgPathRef.current) return;
 
-    // Get SVG dimensions safely
-    const svgRect = menuBgSvgRef.current.getBoundingClientRect();
-    const svgWidth = svgRect.width || window.innerWidth;
-    const svgHeight = svgRect.height || window.innerHeight;
+    // The SVG paths MUST be drawn in the viewBox coordinate system (0 0 1133 861),
+    // NOT the actual screen pixels, because preserveAspectRatio="none" stretches it.
+    const svgWidth = 1133;
+    const svgHeight = 861;
     const svgCenterX = svgWidth / 2;
 
     const OPEN_HIDDEN = `M${svgWidth},0 L${svgWidth},0 Q${svgCenterX},0 0,0 L0,0 Z`;
