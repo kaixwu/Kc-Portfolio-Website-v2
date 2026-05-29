@@ -158,8 +158,30 @@ export default function FeaturesSection() {
     <>
       {/* ── Features Section ─────────────────────────────────── */}
       <section className="features-sect" ref={sectionRef} id="features">
+        
+        {/* Background Video */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="features-bg-video"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+            opacity: 0.35 // Make it subtle to not overpower the content
+          }}
+        >
+          <source src="/assets/features-bg.mp4" type="video/mp4" />
+        </video>
+
         {/* Feature Counter */}
-        <div className="features-counter">
+        <div className="features-counter" style={{ zIndex: 1 }}>
           <div className="features-counter-title">
             <span className="features-counter-h">Features</span>
           </div>
@@ -175,7 +197,7 @@ export default function FeaturesSection() {
         </div>
 
         {/* Arc Cards */}
-        <div className="features-cards">
+        <div className="features-cards" style={{ zIndex: 1 }}>
           {FEATURES.map((feature, i) => (
             <div
               className="features-card"
