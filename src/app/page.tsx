@@ -4,7 +4,6 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import FeaturedProjectSection from "@/components/FeaturedProjectSection";
 import FeaturesSection from "@/components/FeaturesSection";
-import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import DestinationSlider from "@/components/DestinationSlider";
@@ -24,7 +23,6 @@ export default function Home() {
         <Hero />
         <FeaturedProjectSection />
         <FeaturesSection />
-        <Services />
         <TechMarquee />
         <Projects />
         <About />

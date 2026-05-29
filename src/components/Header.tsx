@@ -41,7 +41,6 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
         {isProjectPage ? (
           <>
             <Link href="/#home" onClick={closeMenu}>Home</Link>
-            <Link href="/#services" onClick={closeMenu}>Services</Link>
             <Link href="/#projects" onClick={closeMenu}>Projects</Link>
             <Link href="/#about" onClick={closeMenu}>About</Link>
             <Link href="/#contact" onClick={closeMenu}>Contact</Link>
@@ -49,7 +48,6 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
         ) : (
           <>
             <a href="#home" onClick={closeMenu}>Home</a>
-            <a href="#services" onClick={closeMenu}>Services</a>
             <a href="#projects" onClick={closeMenu}>Projects</a>
             <a href="#about" onClick={closeMenu}>About</a>
             <a href="#contact" onClick={closeMenu}>Contact</a>

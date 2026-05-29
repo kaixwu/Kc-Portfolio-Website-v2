@@ -24,7 +24,6 @@ export default function Footer({ isProjectPage = false }: FooterProps) {
         {isProjectPage ? (
           <>
             <li><Link href="/#faq">FAQ</Link></li>
-            <li><Link href="/#services">Services</Link></li>
             <li><Link href="/#about">About</Link></li>
             <li><Link href="/#projects">Projects</Link></li>
             <li><Link href="/#contact">Contact</Link></li>
@@ -32,7 +31,6 @@ export default function Footer({ isProjectPage = false }: FooterProps) {
         ) : (
           <>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
