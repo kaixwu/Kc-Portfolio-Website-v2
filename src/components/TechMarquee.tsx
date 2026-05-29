@@ -3,7 +3,6 @@
 import React, { useLayoutEffect, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type";
 import {
   SiReact,
   SiNextdotjs,
@@ -121,43 +120,11 @@ export default function TechMarquee() {
   const sectionRef  = useRef<HTMLElement>(null);
   const rowRefs     = useRef<(HTMLDivElement | null)[]>([]);
   const marqueeRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const labelRefs   = useRef<(HTMLHeadingElement | null)[]>([]);
-
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
 
     const section = sectionRef.current;
     if (!section)  return;
-
-    // ── SplitType on every first-set label ─────────────────────
-    const splits = labelRefs.current
-      .filter(Boolean)
-      .map((el) => new SplitType(el as HTMLElement, { types: "chars" }));
-
-    // ── Lenis smooth scroll (optional — native scroll is fallback) ─
-    let lenis: {
-      raf:     (t: number) => void;
-      on:      (e: string, cb: unknown) => void;
-      destroy: () => void;
-    } | null = null;
-
-    (async () => {
-      try {
-        const LenisModule = await import("lenis");
-        const Lenis = LenisModule.default ?? LenisModule;
-        lenis = new (Lenis as new (opts?: object) => typeof lenis & {
-          raf:     (t: number) => void;
-          on:      (e: string, cb: unknown) => void;
-          destroy: () => void;
-        })();
-        lenis!.on("scroll", ScrollTrigger.update);
-        gsap.ticker.add((time: number) => { lenis!.raf(time * 1000); });
-        gsap.ticker.lagSmoothing(0);
-      } catch (_) {
-        // native scroll fallback — animation still works
-      }
-    })();
-
     const ctx = gsap.context(() => {
       // ── Horizontal marquee drift ────────────────────────────
       marqueeRefs.current.forEach((marquee, idx) => {
@@ -183,33 +150,6 @@ export default function TechMarquee() {
         );
       });
 
-      // ── Variable-font weight animation on label chars ───────
-      splits.forEach((split, idx) => {
-        const chars = split.chars;
-        if (!chars || chars.length === 0) return;
-        const container = rowRefs.current[idx];
-        if (!container) return;
-
-        gsap.fromTo(
-          chars,
-          { fontWeight: 300 },
-          {
-            fontWeight: 900,
-            ease: "none",
-            stagger: {
-              each: 0.3,
-              from: idx % 2 !== 0 ? "start" : "end",
-              ease: "linear",
-            },
-            scrollTrigger: {
-              trigger: container,
-              start: "40% bottom",
-              end:   "top top",
-              scrub: true,
-            },
-          }
-        );
-      });
     }, section);
 
     return () => {
@@ -220,14 +160,12 @@ export default function TechMarquee() {
         }
       });
       ctx.revert();
-      splits.forEach((s) => s.revert());
-      if (lenis) lenis.destroy();
     };
   }, []);
 
   return (
     <section className="tmq-section" ref={sectionRef} id="tech-stack">
-      <FluidGradient />
+      {/* Heavy WebGL FluidGradient removed for performance on mobile */}
       
       {/* Heading */}
       <div className="tmq-heading">
@@ -277,14 +215,7 @@ export default function TechMarquee() {
                     key={`${setIdx}-label`}
                     aria-hidden={setIdx > 0 ? true : undefined}
                   >
-                    <h3
-                      className="tmq-label"
-                      ref={
-                        setIdx === 0
-                          ? (el) => { labelRefs.current[rowIdx] = el; }
-                          : undefined
-                      }
-                    >
+                    <h3 className="tmq-label">
                       {row.label}
                     </h3>
                   </div>
