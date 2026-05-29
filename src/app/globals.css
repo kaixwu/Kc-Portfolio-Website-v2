@@ -56,36 +56,160 @@ body {
     background-color: rgba(0, 0, 0, 0.6); 
 }
 
-.header {
+/* NEW POPPR MENU CSS */
+.nav {
     position: fixed;
-    width: 100%;
     top: 0;
     left: 0;
-    padding: 4rem 15%;
-    background: rgba (0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
     z-index: 1000;
 }
 
-#menu-icon {
-    font-size: 3.5rem;
-    color: var(--main-color);
-    display: none;
+.nav-logo, .menu-logo {
+    position: absolute;
+    top: 3rem;
+    left: 3rem;
+    width: max-content;
 }
 
-.logo {
+.text-logo {
     font-size: 3rem;
     color: var(--text-color);
     font-weight: 800;
     cursor: pointer;
     transition: 0.3s ease-in-out;
 }
-
-.logo:hover {
+.text-logo:hover {
     transform: scale(1.1);
+}
+
+.nav-logo {
+    pointer-events: all;
+    background: rgba(0,0,0,0.5);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.nav-toggle {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    color: var(--text-color);
+    cursor: pointer;
+    pointer-events: all;
+    z-index: 1010;
+    padding: 1rem 2rem;
+    background: var(--main-color);
+    border-radius: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.nav-toggle-menu {
+    color: var(--bg-color);
+}
+
+.nav-toggle-close {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--bg-color);
+    opacity: 0;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    color: var(--text-color);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.menu.is-open {
+    pointer-events: all;
+}
+
+.menu-bg-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background-color: transparent !important;
+}
+
+.menu-logo {
+    opacity: 0;
+    padding: 0.5rem;
+}
+
+.menu-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.menu-col-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-family: "Unbounded", "Poppins", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    line-height: 1.35;
+    display: block;
+    width: max-content;
+    overflow: visible;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.menu-col-links a:hover {
+    color: var(--main-color);
+}
+
+.menu-col-info p, .menu-col-info a, .menu-col-info h3, .menu-col-info h6 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+.menu-col-info p {
+    color: var(--main-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.menu a .char,
+.menu-col h3,
+.menu-col h6,
+.menu-col p {
+    will-change: transform, opacity;
+}
+
+@media (max-width: 1000px) {
+    .menu {
+        flex-direction: column-reverse;
+    }
+    
+    .menu-col-links {
+        flex: 1.5;
+    }
 }
 
 span {
@@ -94,19 +218,7 @@ span {
     color: transparent;
 }
 
-.navbar a{
-    font-size: 1.8rem;
-    color: var(--text-color);
-    margin-left: 4rem;
-    font-weight: 500;
-    transition: 0.3s ease-in-out;
-    border-bottom: 3px solid transparent;
-}
 
-.navbar a:hover {
-    color: var(--main-color);
-    border-bottom: 3px solid var(--main-color);
-}
 
 section{
     min-height: 100vh;
@@ -389,12 +501,6 @@ section{
     text-align: center;
     margin-top: 40px;
     font-size: 16px;
-}
-
-svg{
-    color: white;
-    background-color: var(--main-color);
-    border-radius: 1em;
 }
 
 .slider{
@@ -1161,33 +1267,7 @@ svg{
 }
 
 @media(max-width:1285px) {
-    #menu-icon{
-        display: block;
-    }
-    
-    .navbar {
-        position: absolute;
-        top:100%;
-        right: 0;
-        width: 50%;
-        padding: 1rem 3rem;
-        background: rgba(0, 0, 0, 0.8);
-        border-bottom-left-radius: 2rem;
-        border-left: 2px solid var(--main-color);
-        border-bottom: 2px solid var(--main-color);
-        display: none;
-    }
 
-    .navbar a{
-        display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
-        color: var(--text-color);
-    }
-
-    .navbar.active {
-        display: block;
-    }
 
     .home {
         flex-direction: column-reverse;

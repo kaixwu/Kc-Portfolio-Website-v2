@@ -49,6 +49,18 @@ export default function LandingHero() {
       if (SCROLL_KEYS.has(e.key)) e.preventDefault();
     };
 
+    // ── Check if we already saw the preloader in this session ─
+    if (sessionStorage.getItem("hasSeenPreloader") === "true") {
+      gsap.set(overlay, { display: "none" });
+      const heroImg = document.querySelector<HTMLElement>(".home-img img");
+      if (heroImg) {
+        gsap.set(heroImg, { opacity: 1 });
+      }
+      return;
+    }
+
+    sessionStorage.setItem("hasSeenPreloader", "true");
+
     const lockScroll = () => {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow            = "hidden";
