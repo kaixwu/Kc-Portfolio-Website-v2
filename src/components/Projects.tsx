@@ -2,6 +2,7 @@
 
 import React, { useLayoutEffect, useEffect, useRef } from "react";
 import Link from "next/link";
+import FluidGradient from "./FluidGradient";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -51,27 +52,7 @@ const CARDS = [
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
-
-  // Play/pause video based on viewport visibility to save GPU/Battery
-  useIsomorphicLayoutEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      });
-    }, { threshold: 0 });
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
 
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -181,12 +162,17 @@ export default function Projects() {
       className="projects-sticky-section"
       id="projects"
     >
-      {/* Video background — same as original */}
-      <div className="video-background-container">
-        <video ref={videoRef} muted loop playsInline id="projects-video-bg">
-          <source src="/assets/vids/projects-abstract-vid-background.mp4" type="video/mp4" />
-        </video>
-        <div className="video-overlay"></div>
+      {/* Fluid Gradient background */}
+      <div className="video-background-container" style={{ backgroundColor: "#000" }}>
+        <FluidGradient 
+          color1="#0d1117" 
+          color2="#ea580c" 
+          color3="#1a1207" 
+          color4="#c45200"
+          opacity={0.5}
+          colorIntensity={0.6}
+        />
+        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.6)" }}></div>
       </div>
 
       {/* Section label */}
