@@ -14,15 +14,34 @@ export default function ContactForm() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Force autoplay on mobile browsers which sometimes ignore the autoPlay attribute
-    if (videoRef.current) {
-      // iOS Safari requires explicit muted properties
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch((error) => {
-        console.warn("Video autoplay blocked by browser:", error);
-      });
-    }
+    const video = videoRef.current;
+    if (!video) return;
+
+    // iOS Safari requires explicit muted properties
+    video.defaultMuted = true;
+    video.muted = true;
+
+    // Play/pause video based on viewport visibility to satisfy iOS Safari autoplay policies
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch((error) => {
+              console.warn("Video autoplay blocked by browser:", error);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   const handleChange = (
