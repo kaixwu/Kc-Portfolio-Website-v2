@@ -41,7 +41,8 @@ body {
 }
 
 #home-video-bg,
-#projects-video-bg {
+#projects-video-bg,
+#contact-video-bg {
     width: 100%;
     height: 100%;
     object-fit: cover; 
@@ -441,7 +442,8 @@ section{
 }
 
 .contact {
-    background-color: var(--bg-color);
+    /* Background color removed so video background is visible */
+    background-color: transparent;
 }
 
 .contact h2 {
@@ -1624,6 +1626,7 @@ section{
         /* Limit lines on tiny screens */
         display: -webkit-box;
         -webkit-line-clamp: 5;
+        line-clamp: 5;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }

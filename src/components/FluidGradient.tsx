@@ -214,7 +214,13 @@ export default function FluidGradient({
         };
 
         const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true, 
+            alpha: true,
+            powerPreference: "high-performance",
+            depth: false,    // Gradient doesn't need 3D depth buffer (saves memory/GPU)
+            stencil: false   // Gradient doesn't need stencil buffer
+        });
         
         let width = container.clientWidth || window.innerWidth;
         let height = container.clientHeight || window.innerHeight;
@@ -305,11 +311,20 @@ export default function FluidGradient({
 
         let animationFrameId: number;
         let isVisible = false;
+        
+        // Framerate cap (40 FPS instead of 60-144 FPS) to prevent lag while keeping smooth visuals
+        let lastFrameTime = 0;
+        const fpsInterval = 1000 / 40; 
 
-        function animate() {
+        function animate(timestamp: number) {
             animationFrameId = requestAnimationFrame(animate);
 
             if (!isVisible) return; // Skip heavy WebGL rendering if off-screen
+            
+            // Limit frame rate
+            const elapsed = timestamp - lastFrameTime;
+            if (elapsed < fpsInterval) return;
+            lastFrameTime = timestamp - (elapsed % fpsInterval);
 
             const time = performance.now() * 0.001;
             fluidMaterial.uniforms.iTime.value = time;
@@ -356,7 +371,7 @@ export default function FluidGradient({
         };
 
         window.addEventListener('resize', handleResize);
-        animate();
+        animate(performance.now());
 
         return () => {
             cancelAnimationFrame(animationFrameId);

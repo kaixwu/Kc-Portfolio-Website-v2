@@ -1,6 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
-import FluidGradient from "./FluidGradient";
+import dynamic from "next/dynamic";
+
+const FluidGradient = dynamic(() => import("./FluidGradient"), { ssr: false });
 
 interface FooterProps {
   isProjectPage?: boolean;

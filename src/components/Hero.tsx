@@ -1,5 +1,10 @@
+"use client";
+
 import React from "react";
-import FluidGradient from "./FluidGradient";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const FluidGradient = dynamic(() => import("./FluidGradient"), { ssr: false });
 
 export default function Hero() {
   return (

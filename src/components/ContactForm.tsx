@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import FluidGradient from "./FluidGradient";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -39,14 +38,17 @@ export default function ContactForm() {
 
   return (
     <section className="contact" id="contact" style={{ position: "relative", overflow: "hidden" }}>
-      <FluidGradient 
-        color1="#ea580c" 
-        color2="#c2410c" 
-        color3="#7c2d12" 
-        color4="#fed7aa" 
-        colorIntensity={0.8} 
-        opacity={0.65} 
-      />
+      <div className="video-background-container" style={{ backgroundColor: "#000" }}>
+        <video
+          id="contact-video-bg"
+          src="/assets/vids/contactme-abstract-vid-background.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.6)" }}></div>
+      </div>
       <h2 className="heading" style={{ position: "relative", zIndex: 1 }}>
         Contact <span>Me</span>
       </h2>

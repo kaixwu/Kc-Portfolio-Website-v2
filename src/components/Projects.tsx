@@ -2,9 +2,11 @@
 
 import React, { useLayoutEffect, useEffect, useRef } from "react";
 import Link from "next/link";
-import FluidGradient from "./FluidGradient";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const FluidGradient = dynamic(() => import("./FluidGradient"), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger);
 
