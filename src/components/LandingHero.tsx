@@ -50,7 +50,7 @@ export default function LandingHero() {
     };
 
     // ── Check if we already saw the preloader in this session ─
-    if (sessionStorage.getItem("hasSeenPreloader") === "true") {
+    if ((window as any).__HAS_SEEN_PRELOADER__) {
       gsap.set(overlay, { display: "none" });
       const heroImg = document.querySelector<HTMLElement>(".home-img img");
       if (heroImg) {
@@ -59,7 +59,7 @@ export default function LandingHero() {
       return;
     }
 
-    sessionStorage.setItem("hasSeenPreloader", "true");
+    (window as any).__HAS_SEEN_PRELOADER__ = true;
 
     const lockScroll = () => {
       document.documentElement.style.overflow = "hidden";
