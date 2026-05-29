@@ -1,4 +1,4 @@
-﻿@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 @import url('https://fonts.cdnfonts.com/css/poppins');
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&display=swap');
 * {
@@ -2142,7 +2142,8 @@ svg{
 .tmq-section {
     min-height: unset !important;
     padding: 0 !important;
-    width: 100%;
+    width: 100vw; /* Break out of any parent bounds to stretch edge-to-edge */
+    margin-left: calc(-50vw + 50%);
     background: #0a0a0a;
     overflow: hidden;
     position: relative;
@@ -2183,8 +2184,8 @@ svg{
 */
 .tmq-row-container {
     position: relative;
-    width: 130%;
-    left: -15%;
+    width: 130vw;
+    left: -15vw;
     height: clamp(88px, 12vw, 175px);
     overflow: hidden;
 }
@@ -2234,6 +2235,10 @@ svg{
     height: clamp(32px, 5vw, 68px);
     flex-shrink: 0;
     transition: filter 0.3s ease, transform 0.3s ease;
+    
+    /* Neutralize global `svg` style that forces orange background */
+    background-color: transparent !important;
+    border-radius: 0 !important;
 }
 
 .tmq-item--icon:hover svg {
