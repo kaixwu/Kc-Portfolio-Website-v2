@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface FaqItem {
   id: number;
@@ -78,34 +80,31 @@ export default function FAQ() {
   const contentRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current || !bgRef.current) return;
-      if (!window.matchMedia("(min-width: 480px)").matches) return;
+    gsap.registerPlugin(ScrollTrigger);
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const offsetTop = rect.top + window.scrollY;
-      const scrollPosition = window.scrollY - offsetTop;
-      const speed = 0.3;
-
-      bgRef.current.style.backgroundPositionY = `${-(scrollPosition * speed)}px`;
-    };
-
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll);
-    handleScroll();
+    if (!sectionRef.current || !bgRef.current) return;
+    
+    // MatchMedia to only enable parallax on larger screens if desired, but GSAP handles it well
+    let ctx = gsap.context(() => {
+      // Animate the background image itself instead of backgroundPositionY for much better performance
+      // We animate yPercent to create the parallax effect
+      gsap.fromTo(bgRef.current, 
+        { yPercent: -15 }, 
+        {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom", // Start when the top of the section hits the bottom of the viewport
+            end: "bottom top",   // End when the bottom of the section hits the top of the viewport
+            scrub: true,         // Smooth scrubbing
+          }
+        }
+      );
+    });
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      ctx.revert(); // Clean up GSAP animations on unmount
     };
   }, []);
 
@@ -114,7 +113,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="faq-interview" id="faq" ref={sectionRef}>
+    <section className="faq-interview" id="faq" ref={sectionRef} style={{ position: "relative", overflow: "hidden" }}>
       <div className="parallax-bg" id="faq-parallax-bg" ref={bgRef}></div>
 
       <h2 className="heading-medium">
