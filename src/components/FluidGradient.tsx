@@ -168,20 +168,14 @@ const displayShader = `
     }
 `;
 
-const config = {
-    brushSize: 25.0,
-    brushStrength: 0.5,
-    distortionAmount: 2.5,
-    fluidDecay: 0.98,
-    trailLength: 0.8,
-    stopDecay: 0.85,
-    color1: "#8bfff7",
-    color2: "#6e3466",
-    color3: "#0133ff",
-    color4: "#66d1fe",
-    colorIntensity: 0.25, // Lowered intensity to keep it subtle
-    softness: 1.0,
-};
+interface FluidGradientProps {
+    color1?: string;
+    color2?: string;
+    color3?: string;
+    color4?: string;
+    colorIntensity?: number;
+    opacity?: number;
+}
 
 function hexToRgb(hex: string): [number, number, number] {
     const r = parseInt(hex.slice(1, 3), 16) / 255;
@@ -190,12 +184,34 @@ function hexToRgb(hex: string): [number, number, number] {
     return [r, g, b];
 }
 
-export default function FluidGradient() {
+export default function FluidGradient({
+    color1 = "#8bfff7",
+    color2 = "#6e3466",
+    color3 = "#0133ff",
+    color4 = "#66d1fe",
+    colorIntensity = 0.25,
+    opacity = 0.35,
+}: FluidGradientProps) {
     const canvasRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (!canvasRef.current) return;
         const container = canvasRef.current;
+
+        const config = {
+            brushSize: 25.0,
+            brushStrength: 0.5,
+            distortionAmount: 2.5,
+            fluidDecay: 0.98,
+            trailLength: 0.8,
+            stopDecay: 0.85,
+            color1,
+            color2,
+            color3,
+            color4,
+            colorIntensity,
+            softness: 1.0,
+        };
 
         const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -359,7 +375,7 @@ export default function FluidGradient() {
                 width: "100%",
                 height: "100%",
                 zIndex: 0,
-                opacity: 0.35, 
+                opacity, 
                 pointerEvents: "none",
             }}
             aria-hidden="true"
