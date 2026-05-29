@@ -1,13 +1,19 @@
 import React from "react";
+import FluidGradient from "./FluidGradient";
 
 export default function Hero() {
   return (
     <section className="home" id="home">
-      <div className="video-background-container">
-        <video autoPlay muted loop playsInline id="home-video-bg">
-          <source src="/assets/vids/home-abstract-vid-background.mp4" type="video/mp4" />
-        </video>
-        <div className="video-overlay"></div>
+      <div className="video-background-container" style={{ backgroundColor: "#000" }}>
+        <FluidGradient 
+          color1="#ea580c" 
+          color2="#ff0000" 
+          color3="#111111" 
+          color4="#2a0000"
+          opacity={0.6}
+          colorIntensity={0.4}
+        />
+        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.4)" }}></div>
       </div>
 
       <div className="home-content">
