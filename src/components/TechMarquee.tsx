@@ -136,9 +136,10 @@ export default function TechMarquee() {
 
         gsap.fromTo(
           marquee,
-          { x: "0%" },
+          { xPercent: 0 },
           {
-            x: goLeft ? "-12%" : "12%",
+            xPercent: goLeft ? -12 : 12,
+            force3D: true, // Forces hardware acceleration (GPU)
             ease: "none",
             scrollTrigger: {
               trigger: container,
