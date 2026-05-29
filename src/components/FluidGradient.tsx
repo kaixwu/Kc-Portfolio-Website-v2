@@ -222,11 +222,17 @@ export default function FluidGradient({
             stencil: false   // Gradient doesn't need stencil buffer
         });
         
-        let width = container.clientWidth || window.innerWidth;
-        let height = container.clientHeight || window.innerHeight;
-        renderer.setSize(width, height);
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        renderer.setSize(width, height, false);
         // Ensure background is transparent so it can blend via opacity
         renderer.setClearColor(0x000000, 0); 
+        
+        // Force canvas to 100% via CSS to prevent half-screen glitches on resize/mount
+        renderer.domElement.style.width = "100%";
+        renderer.domElement.style.height = "100%";
+        renderer.domElement.style.display = "block";
+        
         container.appendChild(renderer.domElement);
 
         const fluidTarget1 = new THREE.WebGLRenderTarget(width, height, {
@@ -361,9 +367,9 @@ export default function FluidGradient({
 
         const handleResize = () => {
             if (!container) return;
-            width = container.clientWidth || window.innerWidth;
-            height = container.clientHeight || window.innerHeight;
-            renderer.setSize(width, height);
+            width = window.innerWidth;
+            height = window.innerHeight;
+            renderer.setSize(width, height, false);
             fluidMaterial.uniforms.iResolution.value.set(width, height);
             displayMaterial.uniforms.iResolution.value.set(width, height);
             fluidTarget1.setSize(width, height);
