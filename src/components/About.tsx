@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section className="about" id="about">
       <div className="about-img">
-        <img src="/assets/img/kc-img-1.jpg" alt="Kc Casipit posing with sea of clouds" />
+        <img src="/assets/img/kc-img-1.JPG" alt="Kc Casipit posing with sea of clouds" />
       </div>
 
       <div className="about-content">
