@@ -165,10 +165,10 @@ export default function Projects() {
       {/* Fluid Gradient background */}
       <div className="video-background-container" style={{ backgroundColor: "#000" }}>
         <FluidGradient 
-          color1="#0d1117" 
-          color2="#ea580c" 
-          color3="#1a1207" 
-          color4="#c45200"
+          color1="#ffffff" 
+          color2="#e0e0e0" 
+          color3="#cccccc" 
+          color4="#f5f5f5"
           opacity={0.5}
           colorIntensity={0.6}
         />
