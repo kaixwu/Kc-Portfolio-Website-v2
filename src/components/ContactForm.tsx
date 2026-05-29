@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -11,36 +13,33 @@ export default function ContactForm() {
     message: "",
   });
 
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    gsap.registerPlugin(ScrollTrigger);
 
-    // iOS Safari requires explicit muted properties
-    video.defaultMuted = true;
-    video.muted = true;
-
-    // Play/pause video based on viewport visibility to satisfy iOS Safari autoplay policies
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch((error) => {
-              console.warn("Video autoplay blocked by browser:", error);
-            });
-          } else {
-            video.pause();
+    if (!sectionRef.current || !bgRef.current) return;
+    
+    let ctx = gsap.context(() => {
+      // Animate the background image itself for parallax
+      gsap.fromTo(bgRef.current, 
+        { yPercent: -15 }, 
+        {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom", 
+            end: "bottom top",   
+            scrub: true,         
           }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(video);
+        }
+      );
+    });
 
     return () => {
-      observer.disconnect();
+      ctx.revert();
     };
   }, []);
 
@@ -70,25 +69,15 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="contact" id="contact" style={{ position: "relative", overflow: "hidden" }}>
-      <div className="video-background-container" style={{ backgroundColor: "#000" }}>
-        <video
-          ref={videoRef}
-          id="contact-video-bg"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/assets/vids/contactme-abstract-vid-background.mp4" type="video/mp4" />
-        </video>
-        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.6)" }}></div>
-      </div>
-      <h2 className="heading" style={{ position: "relative", zIndex: 1 }}>
+    <section className="contact" id="contact" ref={sectionRef} style={{ position: "relative", overflow: "hidden" }}>
+      <div className="parallax-bg" id="contact-parallax-bg" ref={bgRef}></div>
+      <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.55)", zIndex: 2 }}></div>
+
+      <h2 className="heading" style={{ position: "relative", zIndex: 3 }}>
         Contact <span>Me</span>
       </h2>
 
-      <form id="contact-form" onSubmit={handleSubmit} style={{ position: "relative", zIndex: 1 }}>
+      <form id="contact-form" onSubmit={handleSubmit} style={{ position: "relative", zIndex: 3 }}>
         <div className="input-group">
           <div className="input-box">
             <input

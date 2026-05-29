@@ -930,6 +930,9 @@ section{
     background-image: url('/assets/img/7.webp');
 }
 
+#contact-parallax-bg {
+    background-image: url('/assets/img/10.webp');
+}
 /* PROJECT PAGES STYLING */
 .project-sidebar {
     position: fixed;
