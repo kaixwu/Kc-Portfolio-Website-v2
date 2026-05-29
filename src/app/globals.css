@@ -2151,6 +2151,8 @@ svg{
 
 /* Section Heading */
 .tmq-heading {
+    position: relative;
+    z-index: 1;
     text-align: center;
     padding: 7rem 15% 3rem;
 }
@@ -2169,6 +2171,8 @@ svg{
 
 /* Row Column */
 .tmq-rows {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 1.2rem;

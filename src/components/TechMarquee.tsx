@@ -33,6 +33,7 @@ import {
 } from "react-icons/si";
 import { FaWeebly } from "react-icons/fa";
 import type { IconType } from "react-icons";
+import FluidGradient from "./FluidGradient";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -226,6 +227,8 @@ export default function TechMarquee() {
 
   return (
     <section className="tmq-section" ref={sectionRef} id="tech-stack">
+      <FluidGradient />
+      
       {/* Heading */}
       <div className="tmq-heading">
         <h2 className="heading">
