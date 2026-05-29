@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -10,6 +10,17 @@ export default function ContactForm() {
     subject: "",
     message: "",
   });
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Force autoplay on mobile browsers which sometimes ignore the autoPlay attribute
+    if (videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.warn("Video autoplay blocked by browser:", error);
+      });
+    }
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -40,6 +51,7 @@ export default function ContactForm() {
     <section className="contact" id="contact" style={{ position: "relative", overflow: "hidden" }}>
       <div className="video-background-container" style={{ backgroundColor: "#000" }}>
         <video
+          ref={videoRef}
           id="contact-video-bg"
           src="/assets/vids/contactme-abstract-vid-background.mp4"
           autoPlay
