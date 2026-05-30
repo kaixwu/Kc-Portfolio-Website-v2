@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -22,7 +23,10 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" href="/assets/img/kc-casipit-logo.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <ScrollToTop />
+        {children}
+      </body>
     </html>
   );
 }

@@ -81,8 +81,6 @@ export default function KcPortfolioProject() {
 
   const heroRef     = useRef<HTMLElement>(null);
   const detailsRef  = useRef<HTMLElement>(null);
-  const featuresRef = useRef<HTMLElement>(null);
-  const featuresBgRef = useRef<HTMLDivElement>(null);
 
   const techContentRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
@@ -90,26 +88,11 @@ export default function KcPortfolioProject() {
     const sections = [
       { id: "#project-hero-kc-portfolio", ref: heroRef },
       { id: "#project-details",           ref: detailsRef },
-      { id: "#key-features",              ref: featuresRef },
     ];
 
     gsap.registerPlugin(ScrollTrigger);
     let ctx = gsap.context(() => {
-      if (featuresRef.current && featuresBgRef.current) {
-        gsap.fromTo(featuresBgRef.current, 
-          { yPercent: -15 }, 
-          {
-            yPercent: 15,
-            ease: "none",
-            scrollTrigger: {
-              trigger: featuresRef.current,
-              start: "top bottom", 
-              end: "bottom top",   
-              scrub: true,         
-            }
-          }
-        );
-      }
+      // Intentionally left blank for future scoped animations
     });
 
     // Fade-in observer
@@ -185,14 +168,6 @@ export default function KcPortfolioProject() {
               className={activeSidebarLink === "#features" ? "active-link" : ""}
             >
               Features
-            </a>
-          </li>
-          <li>
-            <a
-              href="#key-features"
-              className={activeSidebarLink === "#key-features" ? "active-link" : ""}
-            >
-              Walkthrough
             </a>
           </li>
         </ul>
@@ -320,23 +295,6 @@ export default function KcPortfolioProject() {
         features={PORTFOLIO_FEATURES} 
         subheadings={PORTFOLIO_SUBHEADINGS} 
       />
-
-      {/* ── Walkthrough / Key Features ────────────────────────── */}
-      <section className="key-features" id="key-features" ref={featuresRef} style={{ position: "relative", overflow: "hidden" }}>
-        <h2 className="heading heading-walkthrough">
-          Video <span>Walkthrough</span>
-        </h2>
-        <div className="parallax-bg" id="key-features-bg-kc-portfolio" ref={featuresBgRef}></div>
-
-        <div className="video-walkthrough-container">
-          {/* Using the home background video as a placeholder until a
-              dedicated portfolio walkthrough recording is available.   */}
-          <video autoPlay muted loop playsInline>
-            <source src="/assets/vids/home-abstract-vid-background.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </section>
 
       <Footer isProjectPage={true} />
     </>
