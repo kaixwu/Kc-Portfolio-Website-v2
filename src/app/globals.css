@@ -1026,7 +1026,11 @@ section{
 }
 
 #project-hero-airlive {
-    background-image: url('/assets/img/airlive-coms-hero-background.webp'); 
+    background-image: url('/assets/img/airlive-coms-hero-background.webp');
+}
+
+#project-hero-kc-portfolio {
+    background-image: url('/assets/img/kc-portfolio-hero-background.jpg');
 }
 
 .project-hero::before { 

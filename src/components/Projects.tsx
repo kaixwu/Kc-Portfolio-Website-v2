@@ -45,7 +45,7 @@ const CARDS = [
     description:
       "Designed and built this very portfolio from the ground up using Next.js 16, React 19, GSAP, and vanilla CSS. Features a cinematic intro animation, scroll-driven arc card gallery, sticky 3D project stack, parallax destination slider, and a fully responsive layout covering every screen from iPhone SE to 4K desktop.",
     href: "/projects/kc-portfolio",
-    img: "/assets/img/kc-org-img3.jpg",
+    img: "/assets/img/kc-portfolio-hero-background.jpg",
     imgAlt: "Kc Portfolio Website Thumbnail",
     bg: "#0d1117",
     accent: "#ea580c",
