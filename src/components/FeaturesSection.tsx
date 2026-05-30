@@ -24,7 +24,7 @@ const FEATURES = [
   {
     img: "/assets/img/kc-org-img3.jpg",
     alt: "Development & Build",
-    text: "Bring designs to life with clean, semantic code — building responsive layouts with modern web technologies like Next.js.",
+    text: "Bring designs to life with clean, semantic code - building responsive layouts with modern web technologies like Next.js.",
   },
   {
     img: "/assets/img/kc-org-img4.jpg",
@@ -46,18 +46,30 @@ const SUBHEADINGS = [
   "delivery",
 ];
 
-// ── Arc animation constants ─────────────────────────────────
-// 5 real cards + 2 empty = 7 total (matches original totalCards)
-const TOTAL_CARDS = FEATURES.length + 2; // 7
-const ARC_ANGLE = Math.PI * 0.4;
-const START_ANGLE = Math.PI / 2 - ARC_ANGLE / 2;
-// totalTravel = 1 + totalCards / 7 = 1 + 7/7 = 2
-const TOTAL_TRAVEL = 1 + TOTAL_CARDS / 7;
+export interface FeatureData {
+  img: string;
+  alt: string;
+  text: string;
+}
 
-export default function FeaturesSection() {
+export interface FeaturesSectionProps {
+  features?: FeatureData[];
+  subheadings?: string[];
+}
+
+export default function FeaturesSection({ 
+  features = FEATURES, 
+  subheadings = SUBHEADINGS 
+}: FeaturesSectionProps = {}) {
+  // ── Arc animation constants ─────────────────────────────────
+  const TOTAL_CARDS = features.length + 2; 
+  const ARC_ANGLE = Math.PI * 0.4;
+  const START_ANGLE = Math.PI / 2 - ARC_ANGLE / 2;
+
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const featureVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const countContainerRef = useRef<HTMLDivElement>(null);
 
   // Play/pause video based on viewport visibility to save GPU/Battery
@@ -80,10 +92,10 @@ export default function FeaturesSection() {
   }, []);
 
   useIsomorphicLayoutEffect(() => {
-    // Sticky scroll height — optimized to prevent empty black scroll space at the end
+    // Sticky scroll height - optimized to prevent empty black scroll space at the end
     const stickyHeight = window.innerHeight * 2.0;
 
-    // Responsive radius — standardizing breakpoint to 1024px for iPad Pro support
+    // Responsive radius - standardizing breakpoint to 1024px for iPad Pro support
     const getRadius = () =>
       window.innerWidth <= 1024
         ? window.innerWidth * 7.5
@@ -130,7 +142,7 @@ export default function FeaturesSection() {
       // ── Counter: find the last real card that has passed the arc midpoint ──
       // When a card's p >= 0.5, it has reached or passed the front-center position
       let activeStep = -1; // -1 = no card at front yet → counter hidden
-      for (let i = 0; i < FEATURES.length; i++) {
+      for (let i = 0; i < features.length; i++) {
         const p = 0.5 + progress * (4 / TOTAL_CARDS) - i / TOTAL_CARDS;
         if (p >= 0.5) activeStep = i;
       }
@@ -142,6 +154,16 @@ export default function FeaturesSection() {
           y: activeStep === -1 ? h : -h * activeStep,
         });
       }
+
+      // Play the active video and pause others
+      featureVideoRefs.current.forEach((video, idx) => {
+        if (!video) return;
+        if (idx === activeStep) {
+          if (video.paused) video.play().catch(() => {});
+        } else {
+          if (!video.paused) video.pause();
+        }
+      });
     }
 
     // Initialise card positions before any scroll
@@ -220,7 +242,7 @@ export default function FeaturesSection() {
           </div>
           <div className="features-count">
             <div className="features-count-container" ref={countContainerRef}>
-              {SUBHEADINGS.map((text, idx) => (
+              {subheadings.map((text, idx) => (
                 <span className="features-count-h" key={idx}>
                   {text}
                 </span>
@@ -231,7 +253,7 @@ export default function FeaturesSection() {
 
         {/* Arc Cards */}
         <div className="features-cards" style={{ zIndex: 1 }}>
-          {FEATURES.map((feature, i) => (
+          {features.map((feature, i) => (
             <div
               className="features-card"
               key={i}
@@ -240,8 +262,19 @@ export default function FeaturesSection() {
               }}
             >
               <div className="features-card-img">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={feature.img} alt={feature.alt} />
+                {feature.img.endsWith('.mp4') ? (
+                  <video 
+                    ref={(el) => { featureVideoRefs.current[i] = el; }}
+                    src={feature.img} 
+                    loop 
+                    muted 
+                    playsInline 
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                  />
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={feature.img} alt={feature.alt} />
+                )}
               </div>
               <div className="features-card-content">
                 <p>{feature.text}</p>
@@ -249,8 +282,8 @@ export default function FeaturesSection() {
             </div>
           ))}
 
-          {/* Two empty spacer cards — required for arc end-padding */}
-          {[FEATURES.length, FEATURES.length + 1].map((idx) => (
+          {/* Two empty spacer cards - required for arc end-padding */}
+          {[features.length, features.length + 1].map((idx) => (
             <div
               className="features-card features-empty"
               key={`empty-${idx}`}

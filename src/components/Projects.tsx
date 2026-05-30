@@ -171,10 +171,10 @@ export default function Projects() {
           color2="#e0e0e0" 
           color3="#cccccc" 
           color4="#f5f5f5"
-          opacity={0.5}
+          opacity={0.65}
           colorIntensity={0.6}
         />
-        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.6)" }}></div>
+        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.45)" }}></div>
       </div>
 
       {/* Section label */}

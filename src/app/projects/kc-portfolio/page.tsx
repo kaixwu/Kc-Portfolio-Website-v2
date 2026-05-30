@@ -21,22 +21,58 @@ const TECH_STACK: TechItem[] = [
     title: "Next.js 16 & React 19",
     iconClass: "bx bxl-react",
     description:
-      "Built entirely on Next.js 16 with the App Router and React 19. The file-based routing system made adding project sub-pages trivial, while server components kept the initial bundle lean. 'use client' directives are scoped only to components that need GSAP or browser APIs.",
+      "Engineered using Next.js 16 App Router and React 19. Server components minimize the initial JavaScript payload for faster load times, while 'use client' directives are strictly scoped to interactive elements requiring GSAP or WebGL APIs.",
   },
   {
     id: 2,
     title: "GSAP & ScrollTrigger",
     iconClass: "bx bx-code-alt",
     description:
-      "All signature animations — the cinematic intro curtain reveal, scroll-pinned arc card gallery, sticky 3D project stack, and image-morph transition — are driven by GSAP 3 with ScrollTrigger, Flip, and CustomEase plugins. Animations are created inside useEffect and fully cleaned up on unmount.",
+      "Powered by GSAP 3 for highly optimized, hardware-accelerated animations. Features cinematic intros, scroll-linked parallax, and sticky 3D card stacks - all strictly managed within React's lifecycle to prevent memory leaks.",
   },
   {
     id: 3,
     title: "Vanilla CSS & Responsive Design",
     iconClass: "bx bxl-css3",
     description:
-      "All styles are hand-crafted vanilla CSS scoped with BEM-style class prefixes to prevent conflicts across sections. Every layout uses clamp(), min(), and CSS Grid for fluid responsiveness — from iPhone SE (375px) to iPad Pro and desktop — without a single CSS framework.",
+      "Styled entirely with hand-crafted, framework-free Vanilla CSS. Utilizes fluid typography (clamp), modern CSS Grid, and scoped BEM architecture to ensure a pixel-perfect, responsive layout across all device sizes.",
   },
+];
+
+const PORTFOLIO_FEATURES = [
+  {
+    img: "/assets/vids/fluidgradient.mp4",
+    alt: "WebGL Fluid Gradients",
+    text: "Immersive, real-time 3D fluid gradients powered by Three.js to give the site a premium, dynamic feel without sacrificing performance.",
+  },
+  {
+    img: "/assets/vids/parallax.mp4",
+    alt: "Smooth GSAP Parallax",
+    text: "Hardware-accelerated parallax scrolling driven by GSAP and ScrollTrigger, creating a cinematic depth effect across sections.",
+  },
+  {
+    img: "/assets/vids/3dcards.mp4",
+    alt: "Sticky 3D Stacks",
+    text: "Interactive 3D card stacking mechanics for the projects showcase, built entirely with complex mathematics and CSS transforms.",
+  },
+  {
+    img: "/assets/vids/transitions.mp4",
+    alt: "Cinematic Transitions",
+    text: "Custom-built, non-blocking page transitions that use morphing elements and curtain reveals to keep the user engaged.",
+  },
+  {
+    img: "/assets/vids/responsive.mp4",
+    alt: "Fluid Responsiveness",
+    text: "Hand-crafted CSS Grid and clamp() typography ensure the layout remains flawlessly readable and beautiful on any screen.",
+  },
+];
+
+const PORTFOLIO_SUBHEADINGS = [
+  "webgl gradients",
+  "smooth parallax",
+  "3d stacks",
+  "transitions",
+  "responsiveness",
 ];
 
 export default function KcPortfolioProject() {
@@ -180,10 +216,9 @@ export default function KcPortfolioProject() {
             Kc <span>Portfolio</span>
           </h1>
           <p className="project-subtitle">
-            Designed and built this very portfolio from the ground up — a fully
-            custom Next.js application with cinematic GSAP animations, a
-            scroll-driven arc card gallery, sticky 3D project stack, and a
-            seamlessly responsive layout across every device.
+            A fully custom, high-performance portfolio built from the ground up.
+            It merges state-of-the-art WebGL graphics with cinematic GSAP scroll
+            animations to deliver a premium, highly interactive user experience.
           </p>
           <a
             href="https://github.com/kaixwu/"
@@ -212,25 +247,23 @@ export default function KcPortfolioProject() {
           <div className="project-info-box">
             <h3>The Challenge</h3>
             <p>
-              The goal was to build a portfolio that doesn&apos;t feel like a template — every
-              interaction needed to feel intentional and premium.
+              The objective was to engineer a portfolio that breaks away from generic templates,
+              ensuring every interaction feels deliberate and premium.
               <br /><br />
-              The key technical challenge was coordinating multiple complex GSAP animations
-              (scroll-triggered arc arc cards, sticky 3D card stacks, a cinematic intro overlay)
-              without any of them interfering with each other or leaking event listeners
-              between page transitions.
+              The primary technical challenge was orchestrating complex, overlapping GSAP animations - such
+              as scroll-linked parallax, WebGL fluid simulations, and sticky 3D card stacks - without
+              causing layout thrashing, performance bottlenecks, or memory leaks during navigation.
             </p>
             <br />
             <h3 className="extra-margin-top">My Solution</h3>
             <p>
-              Each animated section is fully self-contained using GSAP contexts scoped to
-              their own refs, with all ScrollTriggers and timelines cleaned up in the useEffect
-              return function.
+              To ensure buttery-smooth performance (60+ FPS), each animated section is
+              self-contained using GSAP Contexts scoped to strict React refs. All animations
+              and ScrollTriggers are aggressively garbage-collected upon unmount.
               <br /><br />
-              The intro animation uses a non-passive event listener approach to guarantee
-              scroll-lock across all browsers and devices, releasing it exactly when the
-              GSAP morph transition completes. CSS is organised with strict BEM-style
-              class prefixes so no two sections ever conflict.
+              Additionally, heavy background elements like Three.js WebGL gradients and looping
+              videos are managed by IntersectionObservers - pausing automatically when off-screen
+              to save battery life and GPU resources on mobile devices.
             </p>
           </div>
 
@@ -282,8 +315,11 @@ export default function KcPortfolioProject() {
         </div>
       </section>
 
-      {/* ── Arc Features Slider (reused from main page) ──────────── */}
-      <FeaturesSection />
+      {/* ── Arc Features Slider ────────────────────────────────── */}
+      <FeaturesSection 
+        features={PORTFOLIO_FEATURES} 
+        subheadings={PORTFOLIO_SUBHEADINGS} 
+      />
 
       {/* ── Walkthrough / Key Features ────────────────────────── */}
       <section className="key-features" id="key-features" ref={featuresRef} style={{ position: "relative", overflow: "hidden" }}>

@@ -210,7 +210,7 @@ export default function TechMarquee() {
                     </div>
                   ))}
 
-                  {/* Text label tile — only the first set has a real ref */}
+                  {/* Text label tile - only the first set has a real ref */}
                   <div
                     className="tmq-item tmq-item--text"
                     key={`${setIdx}-label`}

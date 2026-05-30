@@ -17,7 +17,7 @@ const FAQ_ITEMS: FaqItem[] = [
     answer: (
       <>
         My leadership and writing roles have been essential to my development work. As a News Writer before in an academic organization, Vox Nova,
-        I had to research complex topics and communicate them clearly and accurately — which is exactly what's
+        I had to research complex topics and communicate them clearly and accurately - which is exactly what's
         needed when translating a client's idea into a technical
         specification or explaining progress.
         <br /><br />

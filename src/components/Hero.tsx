@@ -15,10 +15,10 @@ export default function Hero() {
           color2="#ff0000" 
           color3="#111111" 
           color4="#2a0000"
-          opacity={0.6}
+          opacity={0.75}
           colorIntensity={0.4}
         />
-        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.4)" }}></div>
+        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.25)" }}></div>
       </div>
 
       <div className="home-content">

@@ -19,7 +19,7 @@ const Footer = dynamic(() => import("@/components/Footer"), { ssr: true });
 export default function Home() {
   return (
     <>
-      {/* Fixed full-screen preloader overlay — not part of page flow */}
+      {/* Fixed full-screen preloader overlay - not part of page flow */}
       <LandingHero />
       <Header />
       <main>

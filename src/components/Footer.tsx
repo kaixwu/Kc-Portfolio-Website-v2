@@ -20,10 +20,10 @@ export default function Footer({ isProjectPage = false }: FooterProps) {
           color2="#ea580c" 
           color3="#1a1207" 
           color4="#ff3300"
-          opacity={0.4}
+          opacity={0.55}
           colorIntensity={0.5}
         />
-        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.6)" }}></div>
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.45)" }}></div>
       </div>
 
       {/* Content wrapper to sit above background */}

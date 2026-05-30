@@ -108,7 +108,7 @@ export default function LandingHero() {
     // ── Master timeline ────────────────────────────────────────
     const tl = gsap.timeline();
 
-    // Phase 1 — split curtain opens (top slides up, bottom slides down)
+    // Phase 1 - split curtain opens (top slides up, bottom slides down)
     tl.to(r1, {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
       duration: 1.1,
@@ -120,7 +120,7 @@ export default function LandingHero() {
       ease: "reveal",
     }, 0.12);
 
-    // Phase 2 — rapid image cycling
+    // Phase 2 - rapid image cycling
     const cycleStart = 0.75;
     const cycleStep  = 0.42; // seconds per image
 
@@ -133,20 +133,20 @@ export default function LandingHero() {
 
     const afterCycle = cycleStart + CYCLING_SRCS.length * cycleStep;
 
-    // Phase 3 — show final image (profile photo) fullscreen
+    // Phase 3 - show final image (profile photo) fullscreen
     tl.to(finalDiv, { opacity: 1, duration: 0.28, ease: "none" }, afterCycle);
 
-    // Phase 4 — morph final image into hero profile circle
+    // Phase 4 - morph final image into hero profile circle
     tl.call(() => {
       const target = document.querySelector<HTMLElement>(".home-img img");
       if (!target) {
-        // Fallback: no target found — still unlock scroll and fade out cleanly
+        // Fallback: no target found - still unlock scroll and fade out cleanly
         gsap.to(overlay, {
           opacity: 0,
           duration: 0.5,
           delay: 0.3,
           onComplete: () => {
-            unlockScroll();          // ← was missing here — scroll would stay locked!
+            unlockScroll();          // ← was missing here - scroll would stay locked!
             overlay.style.display = "none";
           },
         });
@@ -164,7 +164,7 @@ export default function LandingHero() {
         duration:     1.25,
         ease:         "power3.inOut",
         onComplete: () => {
-          // Hand off — reveal real hero image with a tiny cross-fade
+          // Hand off - reveal real hero image with a tiny cross-fade
           if (target) {
             gsap.to(target, { opacity: 1, duration: 0.35, ease: "none" });
           }
@@ -174,7 +174,7 @@ export default function LandingHero() {
             duration: 0.45,
             delay: 0.15,
             onComplete: () => {
-              // Unlock scroll — animation is fully done
+              // Unlock scroll - animation is fully done
               unlockScroll();
               overlay.style.display = "none";
               // Restore hero image CSS transition so hover glow works again
@@ -217,7 +217,7 @@ export default function LandingHero() {
         </div>
       ))}
 
-      {/* ── Final image (profile) — morphs into Hero circle ──── */}
+      {/* ── Final image (profile) - morphs into Hero circle ──── */}
       <div className="lh-final-img" ref={finalDivRef}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={FINAL_SRC} alt="Kc Casipit" />
