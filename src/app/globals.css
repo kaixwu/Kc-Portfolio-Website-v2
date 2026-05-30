@@ -914,10 +914,10 @@ section{
     background-position: center center; 
     background-repeat: no-repeat;
     position: absolute;
-    top: -20%; 
+    top: -50%; 
     left: 0;
     width: 100%;
-    height: 140%; 
+    height: 200%; 
     z-index: 1;
     opacity: 0.5;
 }
@@ -1220,6 +1220,10 @@ section{
 
 #key-features-bg-airlive-coms {
     background-image: url('/assets/img/8.webp');
+}
+
+#key-features-bg-kc-portfolio {
+    background-image: url('/assets/img/9.webp');
 }
 
 .video-walkthrough-container {

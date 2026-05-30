@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -44,6 +46,7 @@ export default function KcPortfolioProject() {
   const heroRef     = useRef<HTMLElement>(null);
   const detailsRef  = useRef<HTMLElement>(null);
   const featuresRef = useRef<HTMLElement>(null);
+  const featuresBgRef = useRef<HTMLDivElement>(null);
 
   const techContentRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
@@ -53,6 +56,25 @@ export default function KcPortfolioProject() {
       { id: "#project-details",           ref: detailsRef },
       { id: "#key-features",              ref: featuresRef },
     ];
+
+    gsap.registerPlugin(ScrollTrigger);
+    let ctx = gsap.context(() => {
+      if (featuresRef.current && featuresBgRef.current) {
+        gsap.fromTo(featuresBgRef.current, 
+          { yPercent: -15 }, 
+          {
+            yPercent: 15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: featuresRef.current,
+              start: "top bottom", 
+              end: "bottom top",   
+              scrub: true,         
+            }
+          }
+        );
+      }
+    });
 
     // Fade-in observer
     const fadeInObserver = new IntersectionObserver(
@@ -84,6 +106,7 @@ export default function KcPortfolioProject() {
     });
 
     return () => {
+      ctx.revert();
       sections.forEach((sec) => {
         if (sec.ref.current) {
           fadeInObserver.unobserve(sec.ref.current);
@@ -263,11 +286,11 @@ export default function KcPortfolioProject() {
       <FeaturesSection />
 
       {/* ── Walkthrough / Key Features ────────────────────────── */}
-      <section className="key-features" id="key-features" ref={featuresRef}>
+      <section className="key-features" id="key-features" ref={featuresRef} style={{ position: "relative", overflow: "hidden" }}>
         <h2 className="heading heading-walkthrough">
           Video <span>Walkthrough</span>
         </h2>
-        <div className="parallax-bg" id="key-features-bg-kc-portfolio"></div>
+        <div className="parallax-bg" id="key-features-bg-kc-portfolio" ref={featuresBgRef}></div>
 
         <div className="video-walkthrough-container">
           {/* Using the home background video as a placeholder until a
@@ -278,16 +301,6 @@ export default function KcPortfolioProject() {
           </video>
         </div>
       </section>
-
-      {/* ── Project navigation ────────────────────────────────── */}
-      <nav className="project-nav">
-        <Link href="/projects/airlive-communications" className="btn">
-          <i className="bx bx-left-arrow-alt"></i> Previous Project
-        </Link>
-        <Link href="/#projects" className="btn">
-          <i className="bx bx-grid-horizontal"></i> All Projects
-        </Link>
-      </nav>
 
       <Footer isProjectPage={true} />
     </>
