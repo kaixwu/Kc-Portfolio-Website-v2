@@ -213,14 +213,14 @@ export default function LandingHero() {
           ref={el => { cycRefs.current[i] = el; }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt={`Portfolio snapshot ${i + 1}`} />
+          <img src={src} alt={`Portfolio snapshot ${i + 1}`} loading="lazy" />
         </div>
       ))}
 
       {/* ── Final image (profile) - morphs into Hero circle ──── */}
       <div className="lh-final-img" ref={finalDivRef}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={FINAL_SRC} alt="Kc Casipit" />
+        <img src={FINAL_SRC} alt="Kc Casipit" loading="lazy" />
       </div>
     </div>
   );

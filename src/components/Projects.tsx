@@ -215,6 +215,7 @@ export default function Projects() {
               src={card.img}
               alt={card.imgAlt}
               className="projects-sticky-img"
+              loading="lazy"
             />
           </div>
         </div>

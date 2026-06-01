@@ -13,26 +13,31 @@ const useIsomorphicLayoutEffect =
 const FEATURES = [
   {
     img: "/assets/vids/sunwise-ai-discovery.mp4",
+    poster: "/assets/img/sunwise-ai-discovery-poster.webp",
     alt: "AI Discovery",
     text: "A context-aware recommendation engine leveraging the Gemini API to analyze hyper-local GPS coordinates and real-time meteorological data. It dynamically curates optimal destinations - such as suggesting indoor cafes during heavy rainfall - to ensure a seamless travel experience.",
   },
   {
     img: "/assets/vids/sunwise-chatbot.mp4",
+    poster: "/assets/img/sunwise-chatbot-poster.webp",
     alt: "Conversational AI",
     text: "An intelligent, context-aware chatbot integrated seamlessly into the application. It leverages advanced LLM APIs to provide users with real-time, interactive travel advice, meteorological interpretations, and on-the-fly itinerary troubleshooting.",
   },
   {
     img: "/assets/vids/sunwise-routing.mp4",
+    poster: "/assets/img/sunwise-routing-poster.webp",
     alt: "Smart Itineraries",
     text: "An intelligent day-to-day itinerary scheduler deeply integrated with TomTom Traffic APIs. It calculates precise point-to-point travel times and live traffic delays, dynamically rendering optimized geometric route polylines directly onto the user's map.",
   },
   {
     img: "/assets/vids/sunwise-weather.mp4",
+    poster: "/assets/img/sunwise-weather-poster.webp",
     alt: "Interactive Weather Maps",
     text: "High-performance, multi-layered Leaflet mapping integrated with OpenWeatherMap APIs. Features custom-built, hardware-accelerated toggle controls to instantly render precipitation radars, temperature heatmaps, and wind velocity overlays with zero latency.",
   },
   {
     img: "/assets/vids/sunwise-works-globally.mp4",
+    poster: "/assets/img/sunwise-works-globally-poster.webp",
     alt: "Works Globally",
     text: "Engineered for true borderless functionality. The application aggregates data from a network of global APIs to instantly parse spatial coordinates, fetch real-time meteorological telemetry, and curate dynamic itineraries for absolutely any city on Earth.",
   },
@@ -48,6 +53,7 @@ const SUBHEADINGS = [
 
 export interface FeatureData {
   img: string;
+  poster?: string;
   alt: string;
   text: string;
 }
@@ -281,6 +287,8 @@ export default function FeaturesSection({
                   <video 
                     ref={(el) => { featureVideoRefs.current[i] = el; }}
                     src={feature.img} 
+                    poster={feature.poster}
+                    preload="none"
                     loop 
                     muted 
                     playsInline 
@@ -288,7 +296,7 @@ export default function FeaturesSection({
                   />
                 ) : (
                   /* eslint-disable-next-line @next/next/no-img-element */
-                  <img src={feature.img} alt={feature.alt} />
+                  <img src={feature.img} alt={feature.alt} loading="lazy" />
                 )}
               </div>
               <div className="features-card-content">

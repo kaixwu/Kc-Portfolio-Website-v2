@@ -43,7 +43,7 @@ export default function Hero() {
       </div>
 
       <div className="home-img">
-        <img src="/assets/img/kc-img-2.jpg" alt="Kc Casipit profile portrait" />
+        <img src="/assets/img/kc-img-2.jpg" alt="Kc Casipit profile portrait" loading="lazy" />
       </div>
     </section>
   );
