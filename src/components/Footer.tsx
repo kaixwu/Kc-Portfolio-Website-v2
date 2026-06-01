@@ -29,13 +29,13 @@ export default function Footer({ isProjectPage = false }: FooterProps) {
       {/* Content wrapper to sit above background */}
       <div style={{ position: "relative", zIndex: 1 }}>
         <div className="social-icons">
-          <a href="https://github.com/kaixwu/" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/kaixwu/" target="_blank" rel="noopener noreferrer" aria-label="Visit Kc Casipit's GitHub Profile">
             <i className="bx bxl-github"></i>
           </a>
-          <a href="https://www.linkedin.com/in/kyle-christian-casipit-55520b33a/" target="_blank" rel="noopener noreferrer">
-            <i className="bx bxl-linkedin-square"></i>
+          <a href="https://www.linkedin.com/in/kyle-christian-casipit-55520b33a/" target="_blank" rel="noopener noreferrer" aria-label="Visit Kc Casipit's LinkedIn Profile">
+            <i className="bx bxl-linkedin"></i>
           </a>
-          <a href="https://www.instagram.com/kaixwu/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/kaixwu/" target="_blank" rel="noopener noreferrer" aria-label="Visit Kc Casipit's Instagram Profile">
             <i className="bx bxl-instagram-alt"></i>
           </a>
         </div>
