@@ -12,38 +12,38 @@ const useIsomorphicLayoutEffect =
 // ── Content adapted for Kc's portfolio ──────────────────────
 const FEATURES = [
   {
-    img: "/assets/img/kc-org-img1.jpg",
-    alt: "Discovery & Planning",
-    text: "Deep dive into project goals, target audience, and requirements to create a solid foundation for everything that follows.",
+    img: "/assets/vids/sunwise-ai-discovery.mp4",
+    alt: "AI Discovery",
+    text: "A context-aware recommendation engine leveraging the Gemini API to analyze hyper-local GPS coordinates and real-time meteorological data. It dynamically curates optimal destinations - such as suggesting indoor cafes during heavy rainfall - to ensure a seamless travel experience.",
   },
   {
-    img: "/assets/img/kc-org-img2.jpg",
-    alt: "Design & Prototyping",
-    text: "Craft wireframes and high-fidelity prototypes in Figma, refining the visual identity and user experience until it feels right.",
+    img: "/assets/vids/sunwise-chatbot.mp4",
+    alt: "Conversational AI",
+    text: "An intelligent, context-aware chatbot integrated seamlessly into the application. It leverages advanced LLM APIs to provide users with real-time, interactive travel advice, meteorological interpretations, and on-the-fly itinerary troubleshooting.",
   },
   {
-    img: "/assets/img/kc-org-img3.jpg",
-    alt: "Development & Build",
-    text: "Bring designs to life with clean, semantic code - building responsive layouts with modern web technologies like Next.js.",
+    img: "/assets/vids/sunwise-routing.mp4",
+    alt: "Smart Itineraries",
+    text: "An intelligent day-to-day itinerary scheduler deeply integrated with TomTom Traffic APIs. It calculates precise point-to-point travel times and live traffic delays, dynamically rendering optimized geometric route polylines directly onto the user's map.",
   },
   {
-    img: "/assets/img/kc-org-img4.jpg",
-    alt: "Testing & Refinement",
-    text: "Thorough cross-browser and cross-device testing to ensure everything works flawlessly on every screen and device.",
+    img: "/assets/vids/sunwise-weather.mp4",
+    alt: "Interactive Weather Maps",
+    text: "High-performance, multi-layered Leaflet mapping integrated with OpenWeatherMap APIs. Features custom-built, hardware-accelerated toggle controls to instantly render precipitation radars, temperature heatmaps, and wind velocity overlays with zero latency.",
   },
   {
-    img: "/assets/img/kc-org-img5.jpg",
-    alt: "Launch & Delivery",
-    text: "Deploy the final product, perform final QA, and hand off a fully functional website ready to make a real impact.",
+    img: "/assets/vids/sunwise-works-globally.mp4",
+    alt: "Works Globally",
+    text: "Engineered for true borderless functionality. The application aggregates data from a network of global APIs to instantly parse spatial coordinates, fetch real-time meteorological telemetry, and curate dynamic itineraries for absolutely any city on Earth.",
   },
 ];
 
 const SUBHEADINGS = [
-  "planning",
-  "prototyping",
-  "development",
-  "refinement",
-  "delivery",
+  "ai discovery",
+  "conversational ai",
+  "smart itineraries",
+  "weather maps",
+  "works globally",
 ];
 
 export interface FeatureData {
