@@ -9,10 +9,7 @@ export default function FeaturedProjectSection() {
       </div>
 
       <p className="featured-project__desc">
-        I&apos;m a results-driven web developer focused on building clean,
-        responsive, and user-friendly digital experiences. I specialize in
-        WordPress and CSS Effects, turning complex problems into simple,
-        elegant solutions.
+        SunWise is an intelligent travel application that integrates advanced LLM APIs and real-time geographic data to deliver context-aware recommendations. It features dynamic itinerary generation, high-performance mapping controls, and a conversational AI to ensure a seamless and data-driven user experience.
       </p>
     </section>
   );

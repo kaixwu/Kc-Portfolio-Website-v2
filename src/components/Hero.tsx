@@ -25,8 +25,7 @@ export default function Hero() {
         <h1>Hi, its <span> Kc</span></h1>
         <h3> <span>I'm a Web Developer!</span></h3>
         <p>
-          I'm a results-driven web developer focused on building clean, responsive, and user-friendly digital experiences.
-          I specialize in Wordpress and CSS Effects and love turning complex problems into simple, elegant solutions.
+          I am a software developer with extensive experience building scalable web applications, robust websites, and comprehensive digital platforms. With a broad technology stack spanning modern frontend frameworks, backend integrations, and performance optimization, I architect end-to-end solutions tailored to complex technical requirements.
         </p>
 
 

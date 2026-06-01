@@ -8,12 +8,12 @@ gsap.registerPlugin(CustomEase);
 
 // ── Images that cycle through fullscreen ──────────────────────
 const CYCLING_SRCS = [
-  "/assets/img/kc-org-img1.jpg",
-  "/assets/img/kc-org-img2.jpg",
-  "/assets/img/kc-org-img3.jpg",
-  "/assets/img/kc-org-img4.jpg",
-  "/assets/img/kc-org-img5.jpg",
+  "/assets/img/sunwise-hero-image.jpg",
   "/assets/img/kc-org-img6.jpg",
+  "/assets/img/kc-best-sales-hero-background.webp",
+  "/assets/img/kc-org-img1.jpg",
+  "/assets/img/kc-portfolio-hero-background.jpg",
+  "/assets/img/airlive-coms-hero-background.webp",
 ];
 
 // ── The final image that morphs into the Hero profile photo ───
