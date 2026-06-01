@@ -451,6 +451,17 @@ section{
     color: var(--text-color);
 }
 
+.features-count-h {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: color 0.3s ease;
+}
+
+.features-count-h.active-subheading {
+    color: #ea580c; /* Primary orange */
+}
+
 .contact form {
     display: flex;
     align-items: center;

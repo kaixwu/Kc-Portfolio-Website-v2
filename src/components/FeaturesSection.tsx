@@ -71,6 +71,7 @@ export default function FeaturesSection({
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const featureVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const countContainerRef = useRef<HTMLDivElement>(null);
+  const subheadingRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   // Play/pause video based on viewport visibility to save GPU/Battery
   useIsomorphicLayoutEffect(() => {
@@ -164,6 +165,16 @@ export default function FeaturesSection({
           if (!video.paused) video.pause();
         }
       });
+
+      // Highlight the active subheading
+      subheadingRefs.current.forEach((el, idx) => {
+        if (!el) return;
+        if (idx === activeStep) {
+          el.classList.add("active-subheading");
+        } else {
+          el.classList.remove("active-subheading");
+        }
+      });
     }
 
     // Initialise card positions before any scroll
@@ -243,7 +254,11 @@ export default function FeaturesSection({
           <div className="features-count">
             <div className="features-count-container" ref={countContainerRef}>
               {subheadings.map((text, idx) => (
-                <span className="features-count-h" key={idx}>
+                <span 
+                  className="features-count-h" 
+                  key={idx}
+                  ref={(el) => { subheadingRefs.current[idx] = el; }}
+                >
                   {text}
                 </span>
               ))}
