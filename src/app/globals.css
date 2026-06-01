@@ -1,13 +1,11 @@
-@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
-@import url('https://fonts.cdnfonts.com/css/poppins');
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&display=swap');
+/* Fonts are now handled via next/font/google and layout.tsx head for optimization */
 * {
     margin: 0;
     padding:0;
     box-sizing: border-box;
     text-decoration: none;
     scroll-behavior: smooth;
-    font-family: "Poppins";
+    font-family: var(--font-poppins);
 }
 
 
@@ -167,7 +165,7 @@ body {
 .menu-col-links a {
     text-decoration: none;
     color: var(--text-color);
-    font-family: "Unbounded", "Poppins", sans-serif;
+    font-family: var(--font-unbounded), var(--font-poppins), sans-serif;
     font-size: clamp(2.5rem, 5vw, 5rem);
     line-height: 1.35;
     display: block;
@@ -505,7 +503,7 @@ section{
 
 .footer ul li a {
     color: white;
-    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-family: var(--font-unbounded), var(--font-poppins), sans-serif;
     font-weight: 900;
     border-bottom: 3px solid transparent;
     transition: 0.3s ease-in-out;
@@ -553,7 +551,7 @@ section{
     gap: 80px;
     font-size: 1.2em;
     text-transform: uppercase;
-    font-family: Poppins;
+    font-family: var(--font-poppins), sans-serif;
     text-shadow: 0 0 80px #000;
 }
 
@@ -1696,7 +1694,7 @@ section{
 
 /* Big centred word that spans both halves */
 .featured-project__word {
-    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-family: var(--font-unbounded), var(--font-poppins), sans-serif;
     font-size: clamp(48px, 11vw, 180px);
     font-weight: 900;
     line-height: 1;
@@ -1712,7 +1710,7 @@ section{
 /* "The" pseudo-element above */
 .featured-project__word::before {
     content: 'Featured';
-    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-family: var(--font-unbounded), var(--font-poppins), sans-serif;
     font-size: clamp(22px, 4.5vw, 80px);
     font-weight: 300;
     position: absolute;
@@ -1723,7 +1721,7 @@ section{
 /* "Developer" pseudo-element below-right */
 .featured-project__word::after {
     content: 'Project';
-    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-family: var(--font-unbounded), var(--font-poppins), sans-serif;
     font-size: clamp(22px, 4.5vw, 80px);
     font-weight: 300;
     position: absolute;
@@ -1733,7 +1731,7 @@ section{
 
 /* Description paragraph Ã¢â‚¬â€ bottom-left of the black panel */
 .featured-project__desc {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-poppins), sans-serif;
     font-size: clamp(12px, 1.1vw, 16px);
     font-weight: 400;
     line-height: 1.7;
@@ -1909,7 +1907,7 @@ section{
     width: 100%;
     color: #fff;
     text-transform: uppercase;
-    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-family: var(--font-unbounded), var(--font-poppins), sans-serif;
     font-weight: 900;
     font-size: 110px;
     line-height: 1;
@@ -1923,7 +1921,7 @@ section{
     width: 100%;
     color: #fff;
     text-transform: uppercase;
-    font-family: 'Unbounded', 'Poppins', sans-serif;
+    font-family: var(--font-unbounded), var(--font-poppins), sans-serif;
     font-weight: 900;
     font-size: 42px;
     line-height: 1.2;
@@ -1953,7 +1951,7 @@ section{
     font-size: clamp(24px, 4vw, 52px);
     font-weight: 400;
     line-height: 1.125;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-poppins), sans-serif;
 }
 
 .features-outro > p span {
@@ -2323,7 +2321,7 @@ section{
 }
 
 .tmq-label {
-    font-family: "Unbounded", sans-serif;
+    font-family: var(--font-unbounded), sans-serif;
     font-size: clamp(28px, 5.5vw, 88px);
     font-weight: 300;
     text-transform: uppercase;
