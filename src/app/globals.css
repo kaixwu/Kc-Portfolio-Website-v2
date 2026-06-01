@@ -1327,6 +1327,10 @@ section{
         text-align: center;
     }
 
+    .home-content h3 {
+        white-space: normal;
+    }
+
     .home-img img {
         width: 80vw;
         max-width: 350px;
