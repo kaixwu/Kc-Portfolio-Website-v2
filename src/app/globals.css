@@ -229,7 +229,7 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:15rem; 
+    gap: 8rem; 
     background: transparent;
 }
 
@@ -250,6 +250,24 @@ section{
 .home-content h3 {
     margin: 1rem 0;
     font-size: 4rem;
+    white-space: nowrap;
+}
+
+.typewriter-text {
+    display: inline;
+}
+
+.blinking-cursor {
+    font-weight: 700;
+    font-size: 4.5rem;
+    color: var(--main-color);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    from, to { color: transparent; }
+    50% { color: var(--main-color); }
 }
 
 .home-content p{

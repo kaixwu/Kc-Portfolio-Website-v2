@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Typewriter from "./Typewriter";
 
 const FluidGradient = dynamic(() => import("./FluidGradient"), { ssr: false });
 
@@ -23,7 +24,11 @@ export default function Hero() {
 
       <div className="home-content">
         <h1>Hi, its <span> Kc</span></h1>
-        <h3> <span>I'm a Web Developer!</span></h3>
+        <h3> 
+          <span>
+            I'm a <Typewriter roles={["Web Developer", "Web App Developer", "Backend Developer", "Project Manager", "WordPress Developer", "Full Stack Developer", "Tech Enthusiast"]} />
+          </span>
+        </h3>
         <p>
           I am a software developer with extensive experience building scalable web applications, robust websites, and comprehensive digital platforms. With a broad technology stack spanning modern frontend frameworks, backend integrations, and performance optimization, I architect end-to-end solutions tailored to complex technical requirements.
         </p>
