@@ -4,8 +4,9 @@ export default function FeaturedProjectSection() {
   return (
     <section className="featured-project" id="featured-project">
       <div className="featured-project__left" />
-
-      <div className="featured-project__word">SunWise</div>
+      <div className="featured-project__word">
+        <span style={{ color: "var(--main-color, #ea580c)" }}>SunWise</span>
+      </div>
 
       <p className="featured-project__desc">
         I&apos;m a results-driven web developer focused on building clean,

@@ -1674,7 +1674,7 @@ section{
     /* Override the global section { padding: 10rem 15%; } */
     padding: 0 !important;
     min-height: 100vh;
-    background-image: url('/assets/img/6.webp');
+    background-image: url('/assets/img/sunwise-hero-image.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
