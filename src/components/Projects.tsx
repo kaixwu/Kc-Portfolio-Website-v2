@@ -204,7 +204,7 @@ export default function Projects() {
           className="projects-sticky-card"
           style={{
             backgroundColor: card.bg,
-            zIndex: CARDS.length - i,
+            zIndex: 10 + CARDS.length - i,
           }}
         >
           {/* Left col: text */}
