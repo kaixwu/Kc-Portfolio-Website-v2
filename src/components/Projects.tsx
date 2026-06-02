@@ -6,8 +6,6 @@ import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const FluidGradient = dynamic(() => import("./FluidGradient"), { ssr: false });
-
 gsap.registerPlugin(ScrollTrigger);
 
 const useIsomorphicLayoutEffect =
@@ -55,6 +53,7 @@ const CARDS = [
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -97,6 +96,23 @@ export default function Projects() {
         rotationX: 0,
       });
     });
+
+    // Parallax background animation
+    if (bgRef.current) {
+      gsap.fromTo(bgRef.current, 
+        { yPercent: -15 }, 
+        {
+          yPercent: 15,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom", 
+            end: "bottom top",   
+            scrub: true,         
+          }
+        }
+      );
+    }
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
@@ -163,19 +179,16 @@ export default function Projects() {
       ref={sectionRef}
       className="projects-sticky-section"
       id="projects"
+      style={{ overflow: "hidden" }}
     >
-      {/* Fluid Gradient background */}
-      <div className="video-background-container" style={{ backgroundColor: "#000" }}>
-        <FluidGradient 
-          color1="#ffffff" 
-          color2="#e0e0e0" 
-          color3="#cccccc" 
-          color4="#f5f5f5"
-          opacity={0.65}
-          colorIntensity={0.6}
-        />
-        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.45)" }}></div>
-      </div>
+      <div 
+        className="parallax-bg" 
+        id="projects-parallax-bg" 
+        ref={bgRef}
+        title="Photo by The Connected Narrative on Unsplash"
+        aria-label="Photo by The Connected Narrative on Unsplash"
+      ></div>
+      <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.45)", zIndex: 2 }}></div>
 
       {/* Section label */}
       <div className="projects-sticky-label">
