@@ -5,7 +5,16 @@ export default function FeaturedProjectSection() {
     <section className="featured-project" id="featured-project">
       <div className="featured-project__left" />
       <div className="featured-project__word">
-        <span style={{ color: "var(--main-color, #ea580c)" }}>SunWise</span>
+        <span 
+          style={{ 
+            background: "linear-gradient(270deg, #DF8908 10%, #ff1d15 100%)",
+            backgroundClip: "text",
+            WebkitBackgroundClip: "text",
+            color: "transparent"
+          }}
+        >
+          SunWise
+        </span>
       </div>
 
       <p className="featured-project__desc">

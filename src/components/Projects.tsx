@@ -192,7 +192,9 @@ export default function Projects() {
 
       {/* Section label */}
       <div className="projects-sticky-label">
-        <h2 className="heading">Projects</h2>
+        <h2 className="heading">
+          Kc&apos;s <span>Projects</span>
+        </h2>
       </div>
 
       {/* Cards */}

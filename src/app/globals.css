@@ -133,12 +133,10 @@ body {
     color: var(--text-color);
     pointer-events: none;
     z-index: 1000;
-    visibility: hidden; /* Hide by default to prevent FOUC on page load */
 }
 
 .menu.is-open {
     pointer-events: all;
-    visibility: visible;
 }
 
 .menu-bg-svg {
@@ -494,7 +492,10 @@ section{
 }
 
 .features-count-h.active-subheading {
-    color: #ea580c; /* Primary orange */
+    background: linear-gradient(270deg, #DF8908 10%, #ff1d15 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .contact form {
@@ -1979,7 +1980,7 @@ section{
 /* "01" to "05" numbers / subheadings */
 .features-count-h {
     display: block;
-    width: 100%;
+    width: fit-content;
     color: #fff;
     text-transform: uppercase;
     font-family: var(--font-unbounded), var(--font-poppins), sans-serif;

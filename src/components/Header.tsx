@@ -48,7 +48,6 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
   }, [isProjectPage]);
 
   const toggleMenu = () => {
-    if (isAnimating.current) return;
     setIsOpen(!isOpen);
   };
 
@@ -128,8 +127,8 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
       });
       tlRef.current = tl;
 
-      tl.to(menuBgPathRef.current, { duration: 0.5, attr: { d: OPEN_BULGE }, ease: "power4.in" })
-        .to(menuBgPathRef.current, { duration: 0.5, attr: { d: OPEN_FULL }, ease: "power4.out" })
+      tl.to(menuBgPathRef.current, { duration: 0.35, attr: { d: OPEN_BULGE }, ease: "power2.in" })
+        .to(menuBgPathRef.current, { duration: 0.35, attr: { d: OPEN_FULL }, ease: "power2.out" })
         .to(menuLogoRef.current, { duration: 0.75, opacity: 1, ease: "none" }, "-=0.75")
         .to(infoItems, { duration: 0.75, opacity: 1, y: 0, ease: "power3.out", stagger: 0.075 }, "-=0.75")
         .to(chars, { duration: 1.5, x: "0%", ease: "elastic.out(1, 0.25)", stagger: 0.01 }, 0.45)
@@ -159,8 +158,8 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
         tl.to(menuLogoRef.current, { duration: 0.3, opacity: 0, ease: "none" }, 0)
           .to(linkElements, { duration: 0.3, opacity: 0, ease: "none" }, 0)
           .to(infoItems, { duration: 0.3, opacity: 0, ease: "none" }, 0)
-          .to(menuBgPathRef.current, { duration: 0.5, attr: { d: CLOSE_BULGE }, ease: "power3.in" }, 0)
-          .to(menuBgPathRef.current, { duration: 0.5, attr: { d: CLOSE_HIDDEN }, ease: "power3.out" });
+          .to(menuBgPathRef.current, { duration: 0.35, attr: { d: CLOSE_BULGE }, ease: "power2.in" }, 0)
+          .to(menuBgPathRef.current, { duration: 0.35, attr: { d: CLOSE_HIDDEN }, ease: "power2.out" });
       } else {
         // Initial hidden state
         gsap.set(menuBgPathRef.current, { attr: { d: OPEN_HIDDEN } });
@@ -208,7 +207,7 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
         <div className="menu-col menu-col-info">
           <p ref={(el) => { menuInfoItemsRef.current[0] = el; }}>Get in touch</p>
           <a href="mailto:casipitkylechristian@gmail.com" ref={(el) => { menuInfoItemsRef.current[1] = el; }}>casipitkylechristian@gmail.com</a>
-          <h3 ref={(el) => { menuInfoItemsRef.current[2] = el; }}>+63 912 345 6789</h3>
+
           <br />
           <br />
           <h6 ref={(el) => { menuInfoItemsRef.current[3] = el; }}>Metro Manila, <br />Philippines</h6>

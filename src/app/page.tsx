@@ -20,9 +20,9 @@ export default function Home() {
         <Hero />
         
         {/* Below the fold (lazy loaded) */}
+        <TechMarquee />
         <FeaturedProjectSection />
         <FeaturesSection />
-        <TechMarquee />
         <Projects />
         <ContactForm />
       </main>
