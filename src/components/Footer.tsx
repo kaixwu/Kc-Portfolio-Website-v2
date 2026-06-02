@@ -8,9 +8,10 @@ const FluidGradient = dynamic(() => import("./FluidGradient"), { ssr: false });
 
 interface FooterProps {
   isProjectPage?: boolean;
+  isAboutPage?: boolean;
 }
 
-export default function Footer({ isProjectPage = false }: FooterProps) {
+export default function Footer({ isProjectPage = false, isAboutPage = false }: FooterProps) {
   return (
     <footer className="footer" style={{ position: "relative", overflow: "hidden" }}>
       {/* Fluid Gradient background */}
@@ -40,18 +41,25 @@ export default function Footer({ isProjectPage = false }: FooterProps) {
           </a>
         </div>
 
-        <ul className="list" style={{ listStyle: "none" }}>
-          {isProjectPage ? (
+        <ul className="list">
+          {isAboutPage ? (
             <>
-              <li><Link href="/#faq">FAQ</Link></li>
-              <li><Link href="/#about">About</Link></li>
-              <li><Link href="/#projects">Projects</Link></li>
-              <li><Link href="/#contact">Contact</Link></li>
+              <li><a href="/">HOME</a></li>
+              <li><a href="/#tech-stack">TECH STACK</a></li>
+              <li><a href="/#projects">PROJECTS</a></li>
+              <li><a href="/#contact">CONTACT</a></li>
+            </>
+          ) : isProjectPage ? (
+            <>
+              <li><a href="/#tech-stack">TECH STACK</a></li>
+              <li><Link href="/about">ABOUT</Link></li>
+              <li><a href="/#projects">PROJECTS</a></li>
+              <li><a href="/#contact">CONTACT</a></li>
             </>
           ) : (
             <>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#tech-stack">TECH STACK</a></li>
+              <li><Link href="/about">ABOUT</Link></li>
               <li><a href="#projects">PROJECTS</a></li>
               <li><a href="#contact">CONTACT</a></li>
             </>

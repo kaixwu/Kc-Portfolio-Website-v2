@@ -93,9 +93,21 @@ export default function DestinationSlider() {
           onClick={handlePrev}
           className={activeIndex === 0 ? "d-none" : ""}
           aria-label="Previous destination"
+          style={{
+            border: "2px solid rgba(255, 255, 255, 0.8)",
+            borderRadius: "20px",
+            padding: "10px",
+            background: "rgba(255, 255, 255, 0.05)",
+            backdropFilter: "blur(8px)",
+            transition: "all 0.3s ease",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           <svg
-            className="w-6 h-6 text-gray-800 dark:text-white"
+            className="w-8 h-8 hover-effect"
+            style={{ color: "var(--main-color)", transition: "0.3s" }}
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -107,7 +119,7 @@ export default function DestinationSlider() {
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth="2.2"
               d="M5 12h14M5 12l4-4m-4 4 4 4"
             />
           </svg>
@@ -117,9 +129,21 @@ export default function DestinationSlider() {
           onClick={handleNext}
           className={activeIndex === DESTINATIONS.length - 1 ? "d-none" : ""}
           aria-label="Next destination"
+          style={{
+            border: "2px solid rgba(255, 255, 255, 0.8)",
+            borderRadius: "20px",
+            padding: "10px",
+            background: "rgba(255, 255, 255, 0.05)",
+            backdropFilter: "blur(8px)",
+            transition: "all 0.3s ease",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           <svg
-            className="w-6 h-6 text-gray-800 dark:text-white"
+            className="w-8 h-8 hover-effect"
+            style={{ color: "var(--main-color)", transition: "0.3s" }}
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -131,7 +155,7 @@ export default function DestinationSlider() {
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth="2.2"
               d="M19 12H5m14 0-4 4m4-4-4-4"
             />
           </svg>

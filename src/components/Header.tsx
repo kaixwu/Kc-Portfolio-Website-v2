@@ -199,7 +199,7 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
 
         <div className="menu-logo" ref={menuLogoRef}>
           {isProjectPage ? (
-            <Link href="/#home" onClick={closeMenu}><Logo /></Link>
+            <a href="/" onClick={closeMenu}><Logo /></a>
           ) : (
             <a href="#home" onClick={closeMenu}><Logo /></a>
           )}
@@ -217,16 +217,16 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
         <div className="menu-col menu-col-links" ref={menuLinksContainerRef}>
           {isProjectPage ? (
             <>
-              <Link href="/#home" onClick={closeMenu}>home</Link>
-              <Link href="/#projects" onClick={closeMenu}>projects</Link>
-              <Link href="/#about" onClick={closeMenu}>about</Link>
-              <Link href="/#contact" onClick={closeMenu}>contact</Link>
+              <a href="/" onClick={closeMenu}>home</a>
+              <a href="/#projects" onClick={closeMenu}>projects</a>
+              <Link href="/about" onClick={closeMenu}>about</Link>
+              <a href="/#contact" onClick={closeMenu}>contact</a>
             </>
           ) : (
             <>
               <a href="#home" onClick={closeMenu}>home</a>
               <a href="#projects" onClick={closeMenu}>projects</a>
-              <a href="#about" onClick={closeMenu}>about</a>
+              <Link href="/about" onClick={closeMenu}>about</Link>
               <a href="#contact" onClick={closeMenu}>contact</a>
             </>
           )}

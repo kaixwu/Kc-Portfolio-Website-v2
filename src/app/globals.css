@@ -359,6 +359,23 @@ section{
     align-items: center;
     gap: 10rem;
     background: var(--second-bg-color);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.about > div:not(.fluid-bg) {
+    position: relative;
+    z-index: 10;
+}
+
+.about .fluid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .about-img img {
@@ -510,13 +527,16 @@ section{
 }
 
 .footer ul {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
     font-size: 1.8rem;
+    padding: 0 20px;
 }
 
 .footer ul li {
-    display: inline-block;
-    margin-left: 20px;
+    list-style: none;
 }
 
 .footer ul li a {
@@ -537,13 +557,12 @@ section{
     font-size: 16px;
 }
 
-.slider{
+.slider {
     color: #eee;
     width: 100vw;
     height: 100vh;
     position: relative;
     overflow: hidden;
-    margin-top: -70px;
 }
 
 .slider .list .item{
@@ -962,7 +981,7 @@ section{
 }
 
 #projects-parallax-bg {
-    background-image: url('/assets/img/projects-background.webp');
+    background-image: url('/assets/img/8.webp');
 }
 /* PROJECT PAGES STYLING */
 .project-sidebar {
@@ -2093,7 +2112,7 @@ section{
     }
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Mobile / iPhone SE & iPhone XR Ã¢â‚¬â€ matches getCounterH() returning 30 Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* Ã¢â€ â‚¬Ã¢â€ â‚¬ Mobile / iPhone SE & iPhone XR Ã¢â‚¬â€  matches getCounterH() returning 30 Ã¢â€ â‚¬Ã¢â€ â‚¬ */
 @media (max-width: 480px) {
     .features-counter {
         top: 140px;
@@ -2141,44 +2160,6 @@ section{
 }
 
 /* ============================================================
-   LANDING HERO OVERLAY  (lh-*)
-   Fixed full-screen preloader/intro animation.
-   Plays on page load then fades away to reveal the Hero section.
-   All selectors scoped to lh-* to avoid conflicts.
-   ============================================================ */
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Full-screen overlay (sits on top of everything) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
-.lh-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: var(--bg-color);
-    overflow: hidden;
-}
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Split curtain panels Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
-.lh-revealers {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* Top half Ã¢â‚¬â€ slides up via clip-path */
-.lh-r1 {
-    flex: 1;
-    background: var(--bg-color);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-}
-
-/* Bottom half Ã¢â‚¬â€ slides down via clip-path */
-.lh-r2 {
-    flex: 1;
-    background: var(--bg-color);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-}
 
 /* Ã¢â€â‚¬Ã¢â€â‚¬ Cycling image tiles Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
 .lh-cycling-img {

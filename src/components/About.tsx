@@ -1,8 +1,21 @@
 import React from "react";
+import FluidGradient from "./FluidGradient";
 
 export default function About() {
   return (
     <section className="about" id="about">
+      <div className="fluid-bg" style={{ backgroundColor: "#000" }}>
+        <FluidGradient 
+          color1="#ea580c" 
+          color2="#ff0000" 
+          color3="#111111" 
+          color4="#2a0000"
+          opacity={0.75}
+          colorIntensity={0.4}
+        />
+        <div className="video-overlay" style={{ background: "rgba(0, 0, 0, 0.45)", zIndex: 2, position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}></div>
+      </div>
+
       <div className="about-img">
         <img src="/assets/img/kc-img-1.JPG" alt="Kc Casipit posing with sea of clouds" loading="lazy" />
       </div>
