@@ -316,7 +316,7 @@ export default function FluidGradient({
         window.addEventListener('mouseleave', handleMouseLeave);
 
         let animationFrameId: number;
-        let isVisible = false;
+        let isVisible = true; // Default to true to prevent black screen on route changes
         
         // Framerate cap (40 FPS instead of 60-144 FPS) to prevent lag while keeping smooth visuals
         let lastFrameTime = 0;
@@ -376,7 +376,16 @@ export default function FluidGradient({
             fluidTarget2.setSize(width, height);
         };
 
+        const handlePageShow = (e: PageTransitionEvent) => {
+            if (e.persisted) {
+                isVisible = true;
+                // Force a resize calculation to fix any layout glitches on restore
+                handleResize();
+            }
+        };
+
         window.addEventListener('resize', handleResize);
+        window.addEventListener('pageshow', handlePageShow);
         animate(performance.now());
 
         return () => {
@@ -384,6 +393,7 @@ export default function FluidGradient({
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseleave', handleMouseLeave);
             window.removeEventListener('resize', handleResize);
+            window.removeEventListener('pageshow', handlePageShow);
 
             observer.disconnect();
 
@@ -392,6 +402,7 @@ export default function FluidGradient({
             displayMaterial.dispose();
             fluidTarget1.dispose();
             fluidTarget2.dispose();
+            renderer.forceContextLoss();
             renderer.dispose();
             
             if (container.contains(renderer.domElement)) {

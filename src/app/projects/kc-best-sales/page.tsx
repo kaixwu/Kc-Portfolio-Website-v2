@@ -79,7 +79,9 @@ export default function KcBestSalesProject() {
     const fadeInObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle("is-visible", entry.isIntersecting);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
         });
       },
       { threshold: 0.1 }
@@ -104,8 +106,48 @@ export default function KcBestSalesProject() {
       }
     });
 
+    // Refresh ScrollTrigger when page height changes (e.g., accordions opening)
+    const resizeObserver = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    resizeObserver.observe(document.body);
+
+    // CRITICAL FIX: Aggressively remove hash from URL and force scroll to top.
+    // If the browser jumps to a #hash before GSAP initializes, ScrollTrigger calculates all coordinates wrong,
+    // leaving elements permanently trapped at opacity: 0 or pushed off screen into a black void!
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    setTimeout(() => window.scrollTo(0, 0), 50); // Double tap to override Next.js routing behavior
+
+    // Bulletproof fix for GSAP and WebGL Context on Next.js Back Navigation
+    const forceReloadOnBack = (e: PageTransitionEvent | PopStateEvent) => {
+      if ((e as PageTransitionEvent).persisted || e.type === "popstate") {
+        window.location.reload();
+      }
+    };
+    window.addEventListener("pageshow", forceReloadOnBack);
+    window.addEventListener("popstate", forceReloadOnBack);
+
+    // CRITICAL FIX: Next.js pages load images asynchronously. GSAP calculates height too early.
+    // We MUST poll ScrollTrigger.refresh() to ensure the scroll limits include the footer!
+    const refreshInterval = setInterval(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    const refreshTimeout = setTimeout(() => {
+      clearInterval(refreshInterval);
+    }, 3000);
+
     return () => {
       ctx.revert();
+      resizeObserver.disconnect();
+      clearInterval(refreshInterval);
+      clearTimeout(refreshTimeout);
+      window.removeEventListener("pageshow", forceReloadOnBack);
+      window.removeEventListener("popstate", forceReloadOnBack);
       sections.forEach((sec) => {
         if (sec.ref.current) {
           fadeInObserver.unobserve(sec.ref.current);

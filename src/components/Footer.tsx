@@ -6,14 +6,18 @@ import dynamic from "next/dynamic";
 
 const FluidGradient = dynamic(() => import("./FluidGradient"), { ssr: false });
 
+import { usePathname } from 'next/navigation';
+
 interface FooterProps {
   isProjectPage?: boolean;
   isAboutPage?: boolean;
 }
 
 export default function Footer({ isProjectPage = false, isAboutPage = false }: FooterProps) {
+  const pathname = usePathname();
+
   return (
-    <footer className="footer" style={{ position: "relative", overflow: "hidden" }}>
+    <footer key={pathname} className="footer" style={{ position: "relative", overflow: "hidden" }}>
       {/* Fluid Gradient background */}
       <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0 }}>
         <FluidGradient 
@@ -51,7 +55,7 @@ export default function Footer({ isProjectPage = false, isAboutPage = false }: F
             </>
           ) : isProjectPage ? (
             <>
-              <li><a href="/#tech-stack">TECH STACK</a></li>
+              <li><a href="/">HOME</a></li>
               <li><Link href="/about">ABOUT</Link></li>
               <li><a href="/#projects">PROJECTS</a></li>
               <li><a href="/#contact">CONTACT</a></li>

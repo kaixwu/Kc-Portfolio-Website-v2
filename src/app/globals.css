@@ -133,10 +133,12 @@ body {
     color: var(--text-color);
     pointer-events: none;
     z-index: 1000;
+    visibility: hidden; /* Hide by default to prevent FOUC on page load */
 }
 
 .menu.is-open {
     pointer-events: all;
+    visibility: visible;
 }
 
 .menu-bg-svg {
