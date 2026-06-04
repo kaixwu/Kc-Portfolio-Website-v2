@@ -1105,6 +1105,10 @@ section{
     background-image: url('/assets/img/kc-portfolio-hero-background.jpg');
 }
 
+#project-hero-liberty {
+    background-image: url('/assets/img/liberty-lighthouse-hero-background.jpg');
+}
+
 .project-hero::before { 
     content: '';
     position: absolute;

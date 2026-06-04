@@ -43,7 +43,7 @@ const CARDS = [
     description:
       "Developed and maintain the corporate website for Liberty Lighthouse Group, LLP — a leading independent beverage sales and marketing agency operating across 67+ countries in Asia Pacific. Built with WordPress & Oxygen Builder featuring custom parallax scrolling, animated counters, interactive territory maps, and full SEO optimization.",
     href: "/projects/liberty-lighthouse",
-    img: "/assets/img/kc-best-sales-hero-background.webp",
+    img: "/assets/img/liberty-lighthouse-hero-background.jpg",
     imgAlt: "Liberty Lighthouse Group Corporate Website",
     bg: "#0a0f1a",
     accent: "#2a6496",

@@ -1,15 +1,12 @@
 import React from "react";
-import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-
-// Lazy load below-the-fold components to speed up initial render
-const FeaturedProjectSection = dynamic(() => import("@/components/FeaturedProjectSection"), { ssr: true });
-const FeaturesSection = dynamic(() => import("@/components/FeaturesSection"), { ssr: true });
-const TechMarquee = dynamic(() => import("@/components/TechMarquee"), { ssr: true });
-const Projects = dynamic(() => import("@/components/Projects"), { ssr: true });
-const ContactForm = dynamic(() => import("@/components/ContactForm"), { ssr: true });
-const Footer = dynamic(() => import("@/components/Footer"), { ssr: true });
+import FeaturedProjectSection from "@/components/FeaturedProjectSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import TechMarquee from "@/components/TechMarquee";
+import Projects from "@/components/Projects";
+import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
