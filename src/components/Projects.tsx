@@ -74,15 +74,19 @@ export default function Projects() {
     // We scope it to Projects scroll for safety without breaking other sections.
     let lenis: { raf: (t: number) => void; on: (e: string, cb: unknown) => void; destroy: () => void } | null = null;
 
+    let rafCallback: ((time: number) => void) | null = null;
+
     const initLenis = async () => {
       try {
         const LenisModule = await import("lenis");
         const Lenis = LenisModule.default ?? LenisModule;
         lenis = new (Lenis as new (opts?: object) => typeof lenis & { raf: (t: number) => void; on: (e: string, cb: unknown) => void; destroy: () => void })();
         lenis!.on("scroll", ScrollTrigger.update);
-        gsap.ticker.add((time: number) => {
+        
+        rafCallback = (time: number) => {
           lenis!.raf(time * 1000);
-        });
+        };
+        gsap.ticker.add(rafCallback);
         gsap.ticker.lagSmoothing(0);
       } catch (_) {
         // lenis failed to load; animation still works via native scroll
@@ -180,6 +184,9 @@ export default function Projects() {
         }
       });
       ctx.revert();
+      if (rafCallback) {
+        gsap.ticker.remove(rafCallback);
+      }
       if (lenis) {
         lenis.destroy();
       }
