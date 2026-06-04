@@ -249,6 +249,7 @@ section{
     justify-content: center;
     gap: 8rem; 
     background: transparent;
+    z-index: 10;
 }
 
 .home-content {
@@ -1567,6 +1568,7 @@ section{
     overflow: hidden;
     perspective: 900px;
     background-color: var(--bg-color);
+    z-index: 40;
 }
 
 /* Heading label sits above the stack */
@@ -1672,7 +1674,36 @@ section{
     border-radius: 1.1rem;
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Tablet (Ã¢â€°Â¤ 900px) Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* ─────────────────────────────────────────────────────────
+   CONTACT
+   ───────────────────────────────────────────────────────── */
+.contact {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem 15%;
+    gap: 2rem;
+    background: var(--bg-color);
+    overflow: hidden;
+    z-index: 50;
+}
+
+
+
+/* ── Features Section (Home Page Arc Layout) ───────────── */
+.features-sect {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--bg-color);
+    z-index: 30;
+}
+
+/* ── Responsive: Tablet (≤ 900px) ──────────────────────── */
 @media (max-width: 900px) {
     .projects-sticky-card {
         width: 90%;
@@ -1700,7 +1731,7 @@ section{
     }
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Mobile (Ã¢â€°Â¤ 480px) incl. iPhone SE 375Ãƒâ€”667 Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* ── Responsive: Mobile (≤ 480px) incl. iPhone SE 375×667 ── */
 @media (max-width: 480px) {
     .projects-sticky-section {
         perspective: 600px;
@@ -1768,7 +1799,7 @@ section{
     overflow: hidden;
 }
 
-/* Left black panel Ã¢â‚¬â€ floated to cover left 50% */
+/* Left black panel ── floated to cover left 50% */
 .featured-project__left {
     position: absolute;
     top: 0;
@@ -1817,7 +1848,7 @@ section{
     text-shadow: 0 8px 35px rgba(0, 0, 0, 1), 0 4px 15px rgba(0, 0, 0, 0.9), 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
-/* Description paragraph Ã¢â‚¬â€ bottom-left of the black panel */
+/* Description paragraph ── bottom-left of the black panel */
 .featured-project__desc {
     font-family: var(--font-poppins), sans-serif;
     font-size: clamp(12px, 1.1vw, 16px);
@@ -1831,7 +1862,7 @@ section{
     z-index: 2;
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Tablet Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* ── Responsive: Tablet ── */
 @media (max-width: 900px) {
     .featured-project__left {
         width: 100%;
@@ -1845,7 +1876,7 @@ section{
     }
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Responsive: Mobile incl. iPhone SE 375Ãƒâ€”667 Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* ── Responsive: Mobile incl. iPhone SE 375×667 ── */
 @media (max-width: 480px) {
     .featured-project__word {
         font-size: clamp(36px, 13vw, 60px);
@@ -1876,25 +1907,13 @@ section{
 
 
 /* ============================================================
-   FEATURES SECTION Ã¢â‚¬â€ Arc Card Scroll Animation (Codegrid)
+   FEATURES SECTION ── Arc Card Scroll Animation (Codegrid)
    All selectors prefixed with .features-* to prevent conflicts.
-   NOTE: html/body height is NOT set here Ã¢â‚¬â€ GSAP pinSpacing
+   NOTE: html/body height is NOT set here ── GSAP pinSpacing
          handles the extra scroll space automatically.
    ============================================================ */
 
-.features-sect {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    /* Override global section { padding: 10rem 15%; min-height: 100vh } */
-    padding: 0 !important;
-    min-height: unset !important;
-    overflow: hidden;
-    background-color: #000;
-    color: #fff;
-}
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Arc Cards Container Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* Arc Cards Container */
 .features-cards {
     position: absolute;
     top: 40%;
@@ -1906,7 +1925,7 @@ section{
     pointer-events: none;
 }
 
-/* Individual card Ã¢â‚¬â€ GSAP positions these via x/y/rotation */
+/* Individual card ── GSAP positions these via x/y/rotation */
 .features-card {
     position: absolute;
     width: 500px;
@@ -1957,7 +1976,7 @@ section{
     pointer-events: none;
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ Feature Counter Ã¢â€â‚¬Ã¢â€â‚¬ */
+/* ── Feature Counter ── */
 .features-counter {
     position: absolute;
     top: 120px;
@@ -1983,7 +2002,7 @@ section{
     top: -10px;
 }
 
-/* GSAP controls translateY on this element Ã¢â‚¬â€ no CSS transform here */
+/* GSAP controls translateY on this element ── no CSS transform here */
 .features-count-container {
     position: relative;
     will-change: transform;
@@ -2297,6 +2316,7 @@ section{
     background: #0a0a0a;
     overflow: hidden;
     position: relative;
+    z-index: 20;
 }
 
 /* Section Heading */

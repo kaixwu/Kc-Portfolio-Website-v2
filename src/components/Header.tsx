@@ -38,21 +38,29 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
 
   // Handle Next.js cross-page hash routing natively with GSAP ScrollTrigger
   useEffect(() => {
-    if (typeof window === "undefined" || !window.location.hash) return;
+    if (typeof window === "undefined" || !window.location.search) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const scrollToId = params.get("scrollTo");
+    
+    if (!scrollToId) return;
 
     // Only run on cross-page navigations (when layout is fundamentally changing)
-    if (lastHashRef.current === window.location.hash) return;
-    
-    const currentHash = window.location.hash;
-    lastHashRef.current = currentHash;
+    if (lastHashRef.current === scrollToId) return;
+    lastHashRef.current = scrollToId;
+
+    const targetHash = `#${scrollToId}`;
 
     const handleScroll = () => {
-      const target = document.querySelector(currentHash);
+      const target = document.querySelector(targetHash);
       if (target) {
         // Use exact pixel offset and instant scroll to bypass Lenis interpolation
         // during GSAP layout recalculations
         const y = target.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({ top: y, left: 0, behavior: "instant" });
+        
+        // Clean up the URL so it looks like a standard hash link
+        window.history.replaceState(null, "", targetHash);
       }
     };
 
@@ -243,9 +251,9 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
           {isProjectPage ? (
             <>
               <a href="/" onClick={closeMenu}>home</a>
-              <Link href="/#projects" onClick={closeMenu}>projects</Link>
+              <Link href="/?scrollTo=projects" onClick={closeMenu}>projects</Link>
               <Link href="/about" onClick={closeMenu}>about</Link>
-              <Link href="/#contact" onClick={closeMenu}>contact</Link>
+              <Link href="/?scrollTo=contact" onClick={closeMenu}>contact</Link>
             </>
           ) : (
             <>
