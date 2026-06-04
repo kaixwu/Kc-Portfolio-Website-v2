@@ -1,18 +1,11 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-interface TechItem {
-  id: number;
-  title: string;
-  iconClass: string;
-  description: string;
-}
+import TechAccordion from "@/components/TechAccordion";
+import type { TechItem } from "@/components/TechAccordion";
+import { useProjectPage } from "@/hooks/useProjectPage";
 
 const TECH_STACK: TechItem[] = [
   {
@@ -39,127 +32,21 @@ const TECH_STACK: TechItem[] = [
 ];
 
 export default function AirLiveCommunicationsProject() {
-  const [openTechIndex, setOpenTechIndex] = useState<number | null>(0); // First item active by default
-  const [activeSidebarLink, setActiveSidebarLink] = useState("#project-hero-airlive");
+  const heroRef        = useRef<HTMLElement>(null);
+  const detailsRef     = useRef<HTMLElement>(null);
+  const featuresRef    = useRef<HTMLElement>(null);
+  const featuresBgRef  = useRef<HTMLDivElement>(null);
 
-  const heroRef = useRef<HTMLElement>(null);
-  const detailsRef = useRef<HTMLElement>(null);
-  const featuresRef = useRef<HTMLElement>(null);
-  const featuresBgRef = useRef<HTMLDivElement>(null);
-
-  const techContentRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
-
-  useEffect(() => {
-    const sections = [
-      { id: "#project-hero-airlive", ref: heroRef },
-      { id: "#project-details", ref: detailsRef },
-      { id: "#key-features", ref: featuresRef },
-    ];
-
-    gsap.registerPlugin(ScrollTrigger);
-    let ctx = gsap.context(() => {
-      if (featuresRef.current && featuresBgRef.current) {
-        gsap.fromTo(featuresBgRef.current, 
-          { yPercent: -15 }, 
-          {
-            yPercent: 15,
-            ease: "none",
-            scrollTrigger: {
-              trigger: featuresRef.current,
-              start: "top bottom", 
-              end: "bottom top",   
-              scrub: true,         
-            }
-          }
-        );
-      }
-    });
-
-    // Fade-in Observer
-    const fadeInObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    // Sidebar Active Link Observer
-    const sidebarObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSidebarLink(`#${entry.target.id}`);
-          }
-        });
-      },
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
-
-    sections.forEach((sec) => {
-      if (sec.ref.current) {
-        fadeInObserver.observe(sec.ref.current);
-        sidebarObserver.observe(sec.ref.current);
-      }
-    });
-
-    // Refresh ScrollTrigger when page height changes (e.g., accordions opening)
-    const resizeObserver = new ResizeObserver(() => {
-      ScrollTrigger.refresh();
-    });
-    resizeObserver.observe(document.body);
-
-    // CRITICAL FIX: Aggressively remove hash from URL and force scroll to top.
-    // If the browser jumps to a #hash before GSAP initializes, ScrollTrigger calculates all coordinates wrong,
-    // leaving elements permanently trapped at opacity: 0 or pushed off screen into a black void!
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
-    }
-    window.history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
-    setTimeout(() => window.scrollTo(0, 0), 50); // Double tap to override Next.js routing behavior
-
-    // Bulletproof fix for GSAP and WebGL Context on Next.js Back Navigation
-    const forceReloadOnBack = (e: PageTransitionEvent | PopStateEvent) => {
-      if ((e as PageTransitionEvent).persisted || e.type === "popstate") {
-        window.location.reload();
-      }
-    };
-    window.addEventListener("pageshow", forceReloadOnBack);
-    window.addEventListener("popstate", forceReloadOnBack);
-
-    // CRITICAL FIX: Next.js pages load images asynchronously. GSAP calculates height too early.
-    // We MUST poll ScrollTrigger.refresh() to ensure the scroll limits include the footer!
-    const refreshInterval = setInterval(() => {
-      ScrollTrigger.refresh();
-    }, 500);
-
-    const refreshTimeout = setTimeout(() => {
-      clearInterval(refreshInterval);
-    }, 3000);
-
-    return () => {
-      ctx.revert();
-      resizeObserver.disconnect();
-      clearInterval(refreshInterval);
-      clearTimeout(refreshTimeout);
-      window.removeEventListener("pageshow", forceReloadOnBack);
-      window.removeEventListener("popstate", forceReloadOnBack);
-      sections.forEach((sec) => {
-        if (sec.ref.current) {
-          fadeInObserver.unobserve(sec.ref.current);
-          sidebarObserver.unobserve(sec.ref.current);
-        }
-      });
-    };
-  }, []);
-
-  const toggleTech = (index: number) => {
-    setOpenTechIndex(openTechIndex === index ? null : index);
-  };
+  const { activeSidebarLink } = useProjectPage({
+    sections: [
+      { ref: heroRef },
+      { ref: detailsRef },
+      { ref: featuresRef },
+    ],
+    defaultSidebarLink: "#project-hero-airlive",
+    parallaxRef: featuresBgRef,
+    parallaxTriggerRef: featuresRef,
+  });
 
   return (
     <>
@@ -194,11 +81,6 @@ export default function AirLiveCommunicationsProject() {
         </ul>
       </nav>
 
-      <div className="back-button-container">
-        <Link href="/#projects" className="btn">
-          <i className="bx bx-arrow-back"></i> Back to All Projects
-        </Link>
-      </div>
 
       <section
         className="project-hero"
@@ -264,47 +146,11 @@ export default function AirLiveCommunicationsProject() {
           <div className="project-info-box">
             <h3>Tech Stack</h3>
             <div className="tech-stack-icons">
-              <i className="bx bxl-wordpress" title="WordPress"></i>
-              <i className="bx bxl-javascript" title="JavaScript"></i>
-              <i className="bx bxl-adobe" title="Adobe Photoshop"></i>
+              <i className="bx bxl-wordpress" role="img" aria-label="WordPress"></i>
+              <i className="bx bxl-javascript" role="img" aria-label="JavaScript"></i>
+              <i className="bx bxl-adobe" role="img" aria-label="Adobe Photoshop"></i>
             </div>
-
-            <div style={{ marginTop: "2rem" }}>
-              {TECH_STACK.map((tech, idx) => {
-                const isOpen = openTechIndex === idx;
-                const currentHeight = isOpen
-                  ? techContentRefs.current[idx]?.scrollHeight + "px"
-                  : "0px";
-
-                return (
-                  <div
-                    className={`tech-accordion ${isOpen ? "active" : ""}`}
-                    key={tech.id}
-                  >
-                    <div className="tech-header" onClick={() => toggleTech(idx)}>
-                      <span className="tech-title">{tech.title}</span>
-                      <button className="tech-toggle" aria-expanded={isOpen}>
-                        <i className="bx bxs-chevron-down"></i>
-                        <i className="bx bx-x"></i>
-                      </button>
-                    </div>
-                    <div
-                      className="tech-content"
-                      style={{ maxHeight: currentHeight }}
-                    >
-                      <div
-                        className="tech-content-inner"
-                        ref={(el) => {
-                          techContentRefs.current[idx] = el;
-                        }}
-                      >
-                        <p>{tech.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <TechAccordion items={TECH_STACK} />
           </div>
         </div>
       </section>

@@ -2,10 +2,12 @@
 
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
 
-gsap.registerPlugin(SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
@@ -17,6 +19,7 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const isAnimating = useRef(false);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const pathname = usePathname();
 
   // Refs for animation targets
   const navToggleMenuRef = useRef<HTMLParagraphElement>(null);
@@ -31,21 +34,44 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
   // We'll store our SplitText instances here so we can clean them up
   const splitsRef = useRef<SplitText[]>([]);
   const hasMounted = useRef(false);
+  const lastHashRef = useRef("");
 
-  // Handle cross-page hash navigation scroll
+  // Handle Next.js cross-page hash routing natively with GSAP ScrollTrigger
   useEffect(() => {
-    if (!isProjectPage && window.location.hash) {
-      const hash = window.location.hash.substring(1);
-      // Wait for DOM layout and smooth scrollers (like Lenis) to initialize
-      const timer = setTimeout(() => {
-        const target = document.getElementById(hash);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 500); 
-      return () => clearTimeout(timer);
-    }
-  }, [isProjectPage]);
+    if (typeof window === "undefined" || !window.location.hash) return;
+
+    // Only run on cross-page navigations (when layout is fundamentally changing)
+    if (lastHashRef.current === window.location.hash) return;
+    
+    const currentHash = window.location.hash;
+    lastHashRef.current = currentHash;
+
+    const handleScroll = () => {
+      const target = document.querySelector(currentHash);
+      if (target) {
+        // Use exact pixel offset and instant scroll to bypass Lenis interpolation
+        // during GSAP layout recalculations
+        const y = target.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: y, left: 0, behavior: "instant" });
+      }
+    };
+
+    // 1. Initial attempt for standard Next.js routing
+    requestAnimationFrame(handleScroll);
+
+    // 2. The core fix: listen for GSAP to finish its pin-spacer calculations
+    ScrollTrigger.addEventListener("refresh", handleScroll);
+
+    // Clean up listener to prevent scroll-jumping if user resizes window later
+    const timer = setTimeout(() => {
+      ScrollTrigger.removeEventListener("refresh", handleScroll);
+    }, 2000);
+
+    return () => {
+      ScrollTrigger.removeEventListener("refresh", handleScroll);
+      clearTimeout(timer);
+    };
+  }, [pathname]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -180,7 +206,7 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
     <div className="nav">
       <div className="nav-logo">
         {isProjectPage ? (
-          <Link href="/#home" onClick={closeMenu}><Logo /></Link>
+          <Link href="/" onClick={closeMenu}><Logo /></Link>
         ) : (
           <a href="#home" onClick={closeMenu}><Logo /></a>
         )}
@@ -217,9 +243,9 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
           {isProjectPage ? (
             <>
               <a href="/" onClick={closeMenu}>home</a>
-              <a href="/#projects" onClick={closeMenu}>projects</a>
+              <Link href="/#projects" onClick={closeMenu}>projects</Link>
               <Link href="/about" onClick={closeMenu}>about</Link>
-              <a href="/#contact" onClick={closeMenu}>contact</a>
+              <Link href="/#contact" onClick={closeMenu}>contact</Link>
             </>
           ) : (
             <>

@@ -4,8 +4,13 @@
     padding:0;
     box-sizing: border-box;
     text-decoration: none;
-    scroll-behavior: smooth;
     font-family: var(--font-poppins);
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 60%;
+    overflow-x: hidden;
 }
 
 
@@ -18,14 +23,21 @@
     --diameter: 1432px;
 }
 
-html {
-    font-size: 60%;
-    overflow-x: hidden;
-}
+
 
 body {
     background: var(--bg-color);
     color: var(--text-color);
+}
+
+/* ── Accessibility: Respect user’s OS motion preference ─────────── */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 .video-background-container {
@@ -137,6 +149,13 @@ body {
 
 .menu.is-open {
     pointer-events: all;
+}
+
+/* Hide menu contents by default to prevent FOUC before GSAP initializes */
+.menu-col-links a,
+.menu-col-info > *,
+.menu-logo {
+    opacity: 0;
 }
 
 .menu-bg-svg {
@@ -1283,6 +1302,10 @@ section{
     background-image: url('/assets/img/9.webp');
 }
 
+#key-features-bg-liberty {
+    background-image: url('/assets/img/10.webp');
+}
+
 .video-walkthrough-container {
     position: relative; 
     z-index: 2;
@@ -2113,6 +2136,62 @@ section{
 
     .features-outro > p {
         width: 88%;
+    }
+}
+
+/* ── Landscape Mobile (e.g., iPhone 14 Pro Max in Landscape: ~932x430) ── */
+@media (max-height: 500px) and (orientation: landscape) {
+    .features-counter {
+        top: 80px;
+        left: 5%;
+    }
+
+    .features-counter-title {
+        height: 40px;
+    }
+
+    .features-count {
+        height: 25px;
+        top: 0;
+    }
+
+    .features-counter-h {
+        font-size: 40px;
+        height: 40px;
+    }
+
+    .features-count-h {
+        font-size: 20px;
+        height: 25px;
+    }
+
+    .features-cards {
+        top: 40%;
+        left: 60%; /* Shift the entire arc slightly to the right to utilize the empty space */
+    }
+
+    .features-card {
+        flex-direction: row;
+        width: 650px;
+        height: 200px;
+        margin-left: -325px;
+        align-items: center;
+        gap: 1.5em;
+    }
+
+    .features-card-img {
+        width: 320px;
+        height: 100%;
+        aspect-ratio: auto;
+    }
+
+    .features-card-content {
+        width: calc(100% - 320px - 1.5em);
+    }
+
+    .features-card-content p {
+        font-size: 15px;
+        line-height: 1.4;
     }
 }
 

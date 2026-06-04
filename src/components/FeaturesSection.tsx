@@ -111,6 +111,8 @@ export default function FeaturesSection({
     // Counter element height changes at breakpoints to match CSS
     const getCounterH = () => {
       const w = window.innerWidth;
+      const h = window.innerHeight;
+      if (h <= 500 && w > h) return 25; // Landscape Mobile
       if (w < 480) return 30; // Mobile
       if (w < 850) return 35; // iPad Air / Standard Tablet
       if (w <= 1024) return 40; // iPad Pro / Large Tablet
