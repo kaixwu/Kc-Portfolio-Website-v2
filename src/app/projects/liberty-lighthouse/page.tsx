@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TechAccordion from "@/components/TechAccordion";
+import ViewAllProjectsButton from "@/components/ViewAllProjectsButton";
 import type { TechItem } from "@/components/TechAccordion";
 import { useProjectPage } from "@/hooks/useProjectPage";
 
@@ -95,6 +96,7 @@ export default function LibertyLighthouseProject() {
         ref={heroRef}
         style={{ backgroundColor: "#0a0f1a" }}
       >
+        <ViewAllProjectsButton />
         <div className="project-hero-content">
           <h1 className="heading">
             Liberty <span>Lighthouse Group</span>

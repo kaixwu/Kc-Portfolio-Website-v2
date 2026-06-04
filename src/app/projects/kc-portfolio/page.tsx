@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FeaturesSection from "@/components/FeaturesSection";
 import TechAccordion from "@/components/TechAccordion";
+import ViewAllProjectsButton from "@/components/ViewAllProjectsButton";
 import type { TechItem } from "@/components/TechAccordion";
 import { useProjectPage } from "@/hooks/useProjectPage";
 
@@ -122,6 +123,7 @@ export default function KcPortfolioProject() {
         id="project-hero-kc-portfolio"
         ref={heroRef}
       >
+        <ViewAllProjectsButton />
         <div className="project-hero-content">
           <h1 className="heading">
             Kc <span>Portfolio</span>
