@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins, Unbounded } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
@@ -89,6 +90,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${unbounded.variable}`}>
         <ScrollToTop />
         {children}
+        <Analytics />
       </body>
     </html>
   );
