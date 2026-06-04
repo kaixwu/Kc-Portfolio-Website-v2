@@ -37,7 +37,7 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
   const lastHashRef = useRef("");
 
   // Handle Next.js cross-page hash routing natively with GSAP ScrollTrigger
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined" || !window.location.search) return;
 
     const params = new URLSearchParams(window.location.search);
@@ -51,6 +51,13 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
 
     const targetHash = `#${scrollToId}`;
 
+    // Hide the body instantly to prevent flashing the hero section
+    document.body.style.opacity = "0";
+
+    const revealBody = () => {
+      gsap.to(document.body, { opacity: 1, duration: 0.5, ease: "power2.inOut" });
+    };
+
     const handleScroll = () => {
       const target = document.querySelector(targetHash);
       if (target) {
@@ -61,18 +68,26 @@ export default function Header({ isProjectPage = false }: HeaderProps) {
         
         // Clean up the URL so it looks like a standard hash link
         window.history.replaceState(null, "", targetHash);
+        
+        // Reveal the perfectly scrolled section
+        revealBody();
+      } else {
+        // Failsafe if target isn't found
+        revealBody();
       }
     };
 
-    // 1. Initial attempt for standard Next.js routing
+    // 1. Initial attempt for standard Next.js routing (fast clients)
     requestAnimationFrame(handleScroll);
 
     // 2. The core fix: listen for GSAP to finish its pin-spacer calculations
     ScrollTrigger.addEventListener("refresh", handleScroll);
 
     // Clean up listener to prevent scroll-jumping if user resizes window later
+    // and provide an absolute failsafe reveal
     const timer = setTimeout(() => {
       ScrollTrigger.removeEventListener("refresh", handleScroll);
+      revealBody();
     }, 2000);
 
     return () => {
