@@ -99,27 +99,15 @@ export function useProjectPage({
     // CRITICAL: Remove hash and scroll to top so GSAP calculates positions correctly.
     // We set scrollRestoration = "manual" FIRST to block Next.js from saving/restoring
     // any position for this route.
-    let st1: NodeJS.Timeout | undefined;
-    let st2: NodeJS.Timeout | undefined;
-    let st3: NodeJS.Timeout | undefined;
-
     if (typeof window !== "undefined") {
       window.history.scrollRestoration = "manual";
       if (window.location.hash) {
         window.history.replaceState(null, "", window.location.pathname);
       }
       
-      const forceTop = () => {
-        // Try to clear any lingering smooth scroll instructions
-        document.documentElement.style.scrollBehavior = "auto";
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      };
-      
-      forceTop();
-      // Next.js deferred scroll logic sometimes fires late. Fire multiple times to ensure we win.
-      st1 = setTimeout(forceTop, 10);
-      st2 = setTimeout(forceTop, 100);
-      st3 = setTimeout(forceTop, 300);
+      // Try to clear any lingering smooth scroll instructions and instantly jump to top
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
 
     // Force full page reload on back/forward navigation to prevent GSAP/WebGL corruption
@@ -143,9 +131,6 @@ export function useProjectPage({
     return () => {
       ctx.revert();
       resizeObserver.disconnect();
-      clearTimeout(st1);
-      clearTimeout(st2);
-      clearTimeout(st3);
       clearInterval(refreshInterval);
       clearTimeout(refreshTimeout);
       window.removeEventListener("pageshow", handlePageShow as EventListener);

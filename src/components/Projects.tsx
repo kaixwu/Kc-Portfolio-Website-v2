@@ -230,7 +230,7 @@ export default function Projects() {
               href={card.href}
               className="btn projects-sticky-btn"
               style={{ borderColor: card.accent, color: card.accent }}
-              scroll={true}
+              scroll={false}
             >
               View Project
             </Link>
