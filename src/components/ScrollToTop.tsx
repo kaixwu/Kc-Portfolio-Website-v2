@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
 import { usePathname } from "next/navigation";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export default function ScrollToTop() {
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Force browser to scroll to top immediately on route change
+  useIsomorphicLayoutEffect(() => {
+    // Force browser to scroll to top synchronously BEFORE paint on route change
     window.scrollTo({
       top: 0,
       left: 0,
